@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">MoneyDesk</string>
+
+    <string name="btnLogin">Log in</string>
+    <string name="btnReg">Register</string>
+    <string name="btnOK">OK</string>
+    <string name="btnCancel">Cancel</string>
+    <string name="btnAdd">Add</string>
+    <string name="btnLogout">Log out</string>
+    <string name="btnClose">Close</string>
+    <string name="btnDelete">Delete</string>
+    <string name="bntRename">Rename</string>
+    <string name="cbSave">Save</string>
+    <string name="btnSave">Save</string>
+    <string name="textUser">User:</string>
+    <string name="textPass">Password:</string>
+    <string name="textReg">Registration</string>
+
+</resources>
