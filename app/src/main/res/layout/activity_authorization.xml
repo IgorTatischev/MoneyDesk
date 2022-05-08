@@ -56,7 +56,7 @@
     <Button
         android:id="@+id/buttonLogIn"
         android:layout_width="160dp"
-        android:layout_height="48dp"
+        android:layout_height="50dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="40dp"
         android:text="@string/btnLogin"
@@ -80,7 +80,7 @@
     <Button
         android:id="@+id/buttonReg"
         android:layout_width="160dp"
-        android:layout_height="48dp"
+        android:layout_height="50dp"
         android:text="@string/btnReg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

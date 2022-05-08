@@ -12,11 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoneyDesk">
         <activity
+            android:name=".Authorization"
+            android:exported="true" />
+        <activity
             android:name=".Registration"
             android:exported="false" />
         <activity
-            android:name=".Authorization"
-            android:exported="true">
+            android:name=".SplashScreen"
+            android:exported="true"
+            android:theme="@style/SplashScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
