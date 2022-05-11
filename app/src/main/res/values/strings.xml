@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">MoneyDesk</string>
-
     <string name="btnLogin">Log in</string>
     <string name="btnReg">Register</string>
     <string name="btnOK">OK</string>
@@ -15,5 +14,9 @@
     <string name="textUser">User:</string>
     <string name="textPass">Password:</string>
     <string name="textReg">Registration</string>
-
+    <string name="menu_main">Главная</string>
+    <string name="menu_check">Счёта</string>
+    <string name="tab_main">Расходы</string>
+    <string name="tab_category">Категории</string>
+    <string name="tab_chart">Обзор</string>
 </resources>

@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoneyDesk">
         <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.MoneyDesk.NoActionBar" />
+        <activity
             android:name=".Authorization"
             android:exported="true" />
         <activity
@@ -20,7 +25,7 @@
         <activity
             android:name=".SplashScreen"
             android:exported="true"
-            android:theme="@style/SplashScreen" >
+            android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,5 +33,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
