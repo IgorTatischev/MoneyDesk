@@ -1,10 +1,9 @@
-package com.example.moneydesk.ui.tabfragment;
+package com.example.moneydesk.ui.tablayout;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -12,11 +11,9 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.moneydesk.CategoryFragment;
-import com.example.moneydesk.ChartFragment;
-import com.example.moneydesk.MainFragment;
-import com.example.moneydesk.ViewPagerAdapter;
-import com.example.moneydesk.databinding.FragmentTablayoutBinding;
+import com.example.moneydesk.ui.mainfragments.OperationsFragment;
+import com.example.moneydesk.ui.mainfragments.ChartFragment;
+import com.example.moneydesk.ui.mainfragments.MainFragment;
 import com.example.moneydesk.databinding.FragmentTablayoutBinding;
 import com.google.android.material.tabs.TabLayout;
 
@@ -37,8 +34,8 @@ public class TabLayoutFragment extends Fragment {
 
         tabLayout.setupWithViewPager(viewPager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        adapter.addFragment(new MainFragment(),"Расходы");
-        adapter.addFragment(new CategoryFragment(),"Категории");
+        adapter.addFragment(new MainFragment(),"Главная");
+        adapter.addFragment(new OperationsFragment(),"Операции");
         adapter.addFragment(new ChartFragment(),"Обзор");
         viewPager.setAdapter(adapter);
 

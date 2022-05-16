@@ -1,4 +1,4 @@
-package com.example.moneydesk;
+package com.example.moneydesk.ui.entry;
 
 import androidx.appcompat.app.AppCompatActivity;
 

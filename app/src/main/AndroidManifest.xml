@@ -17,13 +17,13 @@
             android:label="@string/app_name"
             android:theme="@style/Theme.MoneyDesk.NoActionBar" />
         <activity
-            android:name=".Authorization"
+            android:name=".ui.entry.Authorization"
             android:exported="true" />
         <activity
-            android:name=".Registration"
+            android:name=".ui.entry.Registration"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".ui.entry.SplashScreen"
             android:exported="true"
             android:theme="@style/SplashScreen">
             <intent-filter>

@@ -25,8 +25,7 @@ public class CheckFragment extends Fragment {
         binding = FragmentCheckBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textGallery;
-        checkViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
         return root;
     }
 

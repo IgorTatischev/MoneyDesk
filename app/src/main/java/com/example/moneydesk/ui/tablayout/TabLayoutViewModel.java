@@ -1,4 +1,4 @@
-package com.example.moneydesk.ui.tabfragment;
+package com.example.moneydesk.ui.tablayout;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

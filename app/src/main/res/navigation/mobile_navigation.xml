@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.moneydesk.ui.tabfragment.TabLayoutFragment"
+        android:name="com.example.moneydesk.ui.tablayout.TabLayoutFragment"
         android:label="@string/menu_main"
         tools:layout="@layout/fragment_tablayout" />
 
@@ -16,5 +16,10 @@
         android:name="com.example.moneydesk.ui.checkfragment.CheckFragment"
         android:label="@string/menu_check"
         tools:layout="@layout/fragment_check" />
+    <fragment
+        android:id="@+id/nav_category"
+        android:name="com.example.moneydesk.ui.categoryfragment.CategoryFragment"
+        android:label="@string/menu_category"
+        tools:layout="@layout/fragment_category" />
 
 </navigation>
