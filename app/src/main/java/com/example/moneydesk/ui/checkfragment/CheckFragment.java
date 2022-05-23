@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.moneydesk.databinding.FragmentCheckBinding;
-import com.example.moneydesk.databinding.FragmentCheckBinding;
+
 
 public class CheckFragment extends Fragment {
 

@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.moneydesk.ui.tablayout.TabLayoutFragment"
+        android:name="com.example.moneydesk.ui.tablayout.MainFragment"
         android:label="@string/menu_main"
-        tools:layout="@layout/fragment_tablayout" />
+        tools:layout="@layout/fragment_main" />
 
     <fragment
         android:id="@+id/nav_check"

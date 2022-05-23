@@ -4,6 +4,7 @@
     <item>
         <bitmap
             android:gravity="center"
+            android:scaleType="centerInside"
             android:src="@drawable/spl"/>
     </item>
 </layer-list>

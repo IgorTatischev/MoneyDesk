@@ -4,11 +4,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class TabLayoutViewModel extends ViewModel {
+public class MainViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public TabLayoutViewModel() {
+    public MainViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is home fragment");
     }
