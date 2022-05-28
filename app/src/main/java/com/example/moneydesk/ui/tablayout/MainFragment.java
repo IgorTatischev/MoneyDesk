@@ -11,8 +11,9 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.moneydesk.ui.mainfragments.OperationsFragment;
-import com.example.moneydesk.ui.mainfragments.ChartFragment;
+import com.example.moneydesk.ViewPagerAdapter;
+import com.example.moneydesk.ui.mainfragments.IncomeFragment;
+import com.example.moneydesk.ui.mainfragments.ExpensesFragment;
 import com.example.moneydesk.ui.mainfragments.PieChartFragment;
 import com.example.moneydesk.databinding.FragmentMainBinding;
 import com.google.android.material.tabs.TabLayout;
@@ -35,8 +36,8 @@ public class MainFragment extends Fragment {
         tabLayout.setupWithViewPager(viewPager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         adapter.addFragment(new PieChartFragment(),"Главная");
-        adapter.addFragment(new OperationsFragment(),"Операции");
-        adapter.addFragment(new ChartFragment(),"Обзор");
+        adapter.addFragment(new IncomeFragment(),"Расходы");
+        adapter.addFragment(new ExpensesFragment(),"Доходы");
         viewPager.setAdapter(adapter);
 
         return root;

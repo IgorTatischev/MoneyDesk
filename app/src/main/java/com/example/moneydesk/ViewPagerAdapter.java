@@ -1,4 +1,4 @@
-package com.example.moneydesk.ui.tablayout;
+package com.example.moneydesk;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

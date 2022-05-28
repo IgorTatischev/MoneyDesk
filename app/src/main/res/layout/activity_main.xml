@@ -23,10 +23,11 @@
         app:menu="@menu/activity_main_drawer">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/buttonExit"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="Button" />
+            android:text="@string/bntExit" />
     </com.google.android.material.navigation.NavigationView>
+
 </androidx.drawerlayout.widget.DrawerLayout>

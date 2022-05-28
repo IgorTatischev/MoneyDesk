@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_main">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/nav_main"
         android:name="com.example.moneydesk.ui.tablayout.MainFragment"
         android:label="@string/menu_main"
         tools:layout="@layout/fragment_main" />
@@ -21,5 +21,10 @@
         android:name="com.example.moneydesk.ui.categoryfragment.CategoryFragment"
         android:label="@string/menu_category"
         tools:layout="@layout/fragment_category" />
+    <fragment
+        android:id="@+id/nav_stats"
+        android:name="com.example.moneydesk.StatsFragment"
+        android:label="@string/menu_chart"
+        tools:layout="@layout/fragment_stats" />
 
 </navigation>
