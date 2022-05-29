@@ -6,7 +6,7 @@ public class Check {
     private String checkName;
     private BigDecimal checkAmount;
     private int Id;
-    public Check(String name, BigDecimal amount, int id) {
+    public Check(int id,String name, BigDecimal amount) {
         checkName = name;
         checkAmount = amount;
         Id = id;

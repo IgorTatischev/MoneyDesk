@@ -1,7 +1,6 @@
 package com.example.moneydesk.ui.checkfragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,13 +8,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.moneydesk.Client;
 import com.example.moneydesk.Param;
-import com.example.moneydesk.R;
 import com.example.moneydesk.databinding.FragmentCheckBinding;
+import com.example.moneydesk.ui.viewmodel.CheckViewModel;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,14 +38,8 @@ public class CheckFragment extends Fragment {
         binding = FragmentCheckBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         rvChecks = binding.listchecks;
-        return root;
-
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
         ListChecks();
+        return root;
     }
 
     public void ListChecks()
@@ -59,12 +54,12 @@ public class CheckFragment extends Fragment {
                 int id = rec.getInt("id");
                 String name = rec.getString("name");
                 BigDecimal amount = BigDecimal.valueOf(rec.getDouble("amount"));
-                checks.add(new Check(name,amount,id));
-                Log.i("Name",name);
+                checks.add(new Check(id, name,amount));
             }
             adapter = new ChecksAdapter(checks,getActivity());
             rvChecks.setAdapter(adapter);
             rvChecks.setLayoutManager(new LinearLayoutManager(getActivity()));
+            rvChecks.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
         }
         catch (JSONException ex)
         {

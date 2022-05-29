@@ -1,24 +1,25 @@
-package com.example.moneydesk.ui.checkfragment;
+package com.example.moneydesk.ui.mainfragments.income;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.moneydesk.R;
+import com.example.moneydesk.ui.mainfragments.Operation;
 
 import java.util.List;
 
-public class ChecksAdapter extends RecyclerView.Adapter<ChecksAdapter.ViewHolder> {
+public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.ViewHolder> {
 
     private Context context;
-    private List<Check> chList;
-    public ChecksAdapter(List<Check> checks, Context context) {
-        chList = checks;
+    private List<Operation> incomeList;
+    public IncomeAdapter(List<Operation> operations, Context context) {
+        incomeList = operations;
         this.context = context;
     }
 
@@ -27,32 +28,38 @@ public class ChecksAdapter extends RecyclerView.Adapter<ChecksAdapter.ViewHolder
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View contactView = inflater.inflate(R.layout.cheks_item, parent, false);
+        View contactView = inflater.inflate(R.layout.income_item, parent, false);
         ViewHolder viewHolder = new ViewHolder(contactView);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Check check = chList.get(position);
-        holder.checkName.setText(check.getName());
-        holder.checkAmount.setText(check.getAmount().toString());
+    public void onBindViewHolder(@NonNull IncomeAdapter.ViewHolder holder, int position) {
+        Operation operation = incomeList.get(position);
+        holder.categoryName.setText(operation.getCategory());
+        holder.incomeAmount.setText("-" + operation.getAmount().toString());
+        holder.incomeCheck.setText(operation.getCheck());
+        holder.incomeDate.setText(operation.getDate());
     }
 
     @Override
     public int getItemCount() {
-        return chList.size();
+        return incomeList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView checkName;
-        public  TextView checkAmount;
-        public Button btnDelete;
+        public TextView categoryName;
+        public  TextView incomeAmount;
+        public  TextView incomeCheck;
+        public  TextView incomeDate;
+        public ImageButton btnDelete;
         public ViewHolder(View itemView) {
             super(itemView);
-            checkName = itemView.findViewById(R.id.nameCheck);
-            checkAmount = itemView.findViewById(R.id.textAmount);
-            btnDelete = itemView.findViewById(R.id.deleteCheck);
+            categoryName = itemView.findViewById(R.id.textCategory);
+            incomeAmount = itemView.findViewById(R.id.textIncome);
+            incomeCheck = itemView.findViewById(R.id.textCheck);
+            incomeDate = itemView.findViewById(R.id.textDate);
+            btnDelete = itemView.findViewById(R.id.deleteIncome);
             final EditText editText = new EditText(context);
 
 //            MaterialAlertDialogBuilder dialog = new
@@ -63,7 +70,6 @@ public class ChecksAdapter extends RecyclerView.Adapter<ChecksAdapter.ViewHolder
 //                    .setPositiveButton("Edit", (dialog1, which) -> {
 //                        //...
 //                    });
-
             btnDelete.setOnClickListener(v -> {
                 notifyDataSetChanged();
                 //body deleting

@@ -64,4 +64,48 @@ public class Client {
         return request.getData();
     }
 
+    public String get_category_income(int id) {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("id_user", id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        request.post("get_category_income", obj.toString());
+        return request.getData();
+    }
+
+    public String get_category_expense(int id) {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("id_user", id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        request.post("get_category_expense", obj.toString());
+        return request.getData();
+    }
+
+    //расходы со всех счетов
+    public String get_all_income(int id) {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("id_user", id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        request.post("get_all_income", obj.toString());
+        return request.getData();
+    }
+    //доходы со всех счетов
+    public String get_all_expenses(int id) {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("id_user", id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        request.post("get_all_expenses", obj.toString());
+        return request.getData();
+    }
 }

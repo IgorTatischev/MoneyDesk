@@ -1,4 +1,4 @@
-package com.example.moneydesk.ui.tablayout;
+package com.example.moneydesk.ui.mainfragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,10 +12,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.moneydesk.ViewPagerAdapter;
-import com.example.moneydesk.ui.mainfragments.IncomeFragment;
-import com.example.moneydesk.ui.mainfragments.ExpensesFragment;
-import com.example.moneydesk.ui.mainfragments.PieChartFragment;
+import com.example.moneydesk.ui.mainfragments.income.IncomeFragment;
+import com.example.moneydesk.ui.mainfragments.expense.ExpensesFragment;
 import com.example.moneydesk.databinding.FragmentMainBinding;
+import com.example.moneydesk.ui.viewmodel.MainViewModel;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainFragment extends Fragment {
@@ -39,7 +39,6 @@ public class MainFragment extends Fragment {
         adapter.addFragment(new IncomeFragment(),"Расходы");
         adapter.addFragment(new ExpensesFragment(),"Доходы");
         viewPager.setAdapter(adapter);
-
         return root;
     }
 

@@ -1,24 +1,22 @@
-package com.example.moneydesk.ui.mainfragments;
+package com.example.moneydesk.ui.stats;
 
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.fragment.app.Fragment;
-
 import com.example.moneydesk.R;
 
 
-public class IncomeFragment extends Fragment {
+public class StatsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_income, container, false);
+        return inflater.inflate(R.layout.fragment_stats, container, false);
     }
-
-
-
 }
