@@ -19,6 +19,6 @@
     <string name="menu_check">Счета</string>
     <string name="menu_category">Категории</string>
     <string name="menu_chart">Обзор</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="item_check">Счёт</string>
+    <string name="item_amount">Баланс</string>
 </resources>

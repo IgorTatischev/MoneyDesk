@@ -52,4 +52,16 @@ public class Client {
         request.post("reg_user", obj.toString());
         return request.getData();
     }
+
+    public String get_checks(int id) {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("id_user", id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        request.post("get_checks", obj.toString());
+        return request.getData();
+    }
+
 }

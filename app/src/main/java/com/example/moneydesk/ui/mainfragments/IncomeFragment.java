@@ -18,4 +18,7 @@ public class IncomeFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_income, container, false);
     }
+
+
+
 }
