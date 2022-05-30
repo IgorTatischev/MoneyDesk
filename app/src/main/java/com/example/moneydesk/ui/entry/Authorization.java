@@ -47,7 +47,7 @@ public class Authorization extends AppCompatActivity {
             startActivity(intent);
         }
         else {
-            msg.setText("No user!");
+            msg.setText("Пользователь не существует или введены неверные данные!");
             msg.show();
         }
     }

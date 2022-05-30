@@ -29,7 +29,6 @@ public class Client {
 
     public String get_user(String usr, String pass) {
         JSONObject obj = new JSONObject();
-
         try {
             obj.put("login", usr);
             obj.put("secret", pass);
@@ -42,7 +41,6 @@ public class Client {
 
     public String reg_user(String log, String pass) {
         JSONObject obj = new JSONObject();
-
         try {
             obj.put("login", log);
             obj.put("secret", pass);
@@ -85,7 +83,39 @@ public class Client {
         request.post("get_category_expense", obj.toString());
         return request.getData();
     }
-
+    //расходы по категориям за месяц
+    public String get_sumincome_month(int id) {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("id_user", id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        request.post("get_sumincome_month", obj.toString());
+        return request.getData();
+    }
+    //расходы по категориям за неделю
+    public String get_sumincome_week(int id) {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("id_user", id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        request.post("get_sumincome_week", obj.toString());
+        return request.getData();
+    }
+    //расходы по категориям за сегодня
+    public String get_sumincome_today(int id) {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("id_user", id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        request.post("get_sumincome_today", obj.toString());
+        return request.getData();
+    }
     //расходы со всех счетов
     public String get_all_income(int id) {
         JSONObject obj = new JSONObject();

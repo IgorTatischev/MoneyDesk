@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +31,7 @@ import java.util.ArrayList;
 
 public class IncomeFragment extends Fragment {
 
+    Toast msg;
     RecyclerView rvIncome;
     IncomeAdapter adapter;
     ArrayList<Operation> incomes = new ArrayList<>();
@@ -38,6 +40,7 @@ public class IncomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_income,container,false);
+        msg = Toast.makeText(getActivity(),"",Toast.LENGTH_SHORT);
         rvIncome = view.findViewById(R.id.listincome);
         ListIncome();
         return view;
@@ -47,27 +50,33 @@ public class IncomeFragment extends Fragment {
     {
         Client client = new Client();
         String data = client.get_all_income(Param.id_user);
-        try
-        {
-            JSONArray jsonArray = new JSONArray(data);
-            for(int i = 0; i< jsonArray.length();i++) {
-                JSONObject rec = jsonArray.getJSONObject(i);
-                int id = rec.getInt("id");
-                String category = rec.getString("category");
-                BigDecimal amount = BigDecimal.valueOf(rec.getDouble("sum"));
-                String check = rec.getString("checkname");
-                String date = rec.getString("date");
-                incomes.add(new Operation(id,category,amount,check,date));
-                adapter = new IncomeAdapter(incomes,getActivity());
-                rvIncome.setAdapter(adapter);
-                rvIncome.setLayoutManager(new LinearLayoutManager(getActivity()));
-                rvIncome.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-                Log.i("Name",category);
+        if (data != null) {
+            try
+            {
+                JSONArray jsonArray = new JSONArray(data);
+                for(int i = 0; i< jsonArray.length();i++) {
+                    JSONObject rec = jsonArray.getJSONObject(i);
+                    int id = rec.getInt("id");
+                    String category = rec.getString("category");
+                    BigDecimal amount = BigDecimal.valueOf(rec.getDouble("sum"));
+                    String check = rec.getString("checkname");
+                    String date = rec.getString("date");
+                    incomes.add(new Operation(id,category,amount,check,date));
+                    adapter = new IncomeAdapter(incomes,getActivity());
+                    rvIncome.setAdapter(adapter);
+                    rvIncome.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    rvIncome.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+                }
+            }
+            catch (JSONException ex)
+            {
+                ex.printStackTrace();
             }
         }
-        catch (JSONException ex)
+        else
         {
-            ex.printStackTrace();
+            msg.setText("Нет записей расходов!");
+            msg.show();
         }
     }
 }

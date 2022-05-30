@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 
 public class ExpensesFragment extends Fragment {
 
+    Toast msg;
     RecyclerView rvExpenses;
     ExpenseAdapter adapter;
     ArrayList<Operation> expenses = new ArrayList<>();
@@ -35,6 +37,7 @@ public class ExpensesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_expenses,container,false);
+        msg = Toast.makeText(getActivity(),"",Toast.LENGTH_SHORT);
         rvExpenses = view.findViewById(R.id.listexpenses);
         ListExpenses();
         return view;
@@ -44,26 +47,33 @@ public class ExpensesFragment extends Fragment {
     {
         Client client = new Client();
         String data = client.get_all_expenses(Param.id_user);
-        try
-        {
-            JSONArray jsonArray = new JSONArray(data);
-            for(int i = 0; i< jsonArray.length();i++) {
-                JSONObject rec = jsonArray.getJSONObject(i);
-                int id = rec.getInt("id");
-                String category = rec.getString("category");
-                BigDecimal amount = BigDecimal.valueOf(rec.getDouble("sum"));
-                String check = rec.getString("checkname");
-                String date = rec.getString("date");
-                expenses.add(new Operation(id,category,amount,check,date));
-                adapter = new ExpenseAdapter(expenses,getActivity());
-                rvExpenses.setAdapter(adapter);
-                rvExpenses.setLayoutManager(new LinearLayoutManager(getActivity()));
-                rvExpenses.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+        if (data != null) {
+            try
+            {
+                JSONArray jsonArray = new JSONArray(data);
+                for(int i = 0; i< jsonArray.length();i++) {
+                    JSONObject rec = jsonArray.getJSONObject(i);
+                    int id = rec.getInt("id");
+                    String category = rec.getString("category");
+                    BigDecimal amount = BigDecimal.valueOf(rec.getDouble("sum"));
+                    String check = rec.getString("checkname");
+                    String date = rec.getString("date");
+                    expenses.add(new Operation(id,category,amount,check,date));
+                    adapter = new ExpenseAdapter(expenses,getActivity());
+                    rvExpenses.setAdapter(adapter);
+                    rvExpenses.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    rvExpenses.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+                }
+            }
+            catch (JSONException ex)
+            {
+                ex.printStackTrace();
             }
         }
-        catch (JSONException ex)
+        else
         {
-            ex.printStackTrace();
+            msg.setText("Нет записей доходов!");
+            msg.show();
         }
     }
 }
