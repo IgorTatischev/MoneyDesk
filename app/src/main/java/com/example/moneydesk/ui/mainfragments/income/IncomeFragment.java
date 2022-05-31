@@ -34,7 +34,7 @@ public class IncomeFragment extends Fragment {
     Toast msg;
     RecyclerView rvIncome;
     IncomeAdapter adapter;
-    ArrayList<Operation> incomes = new ArrayList<>();
+    ArrayList<Operation> incomes;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,6 +48,7 @@ public class IncomeFragment extends Fragment {
 
     public void ListIncome()
     {
+        incomes = new ArrayList<>();
         Client client = new Client();
         String data = client.get_all_income(Param.id_user);
         if (data != null) {
@@ -72,11 +73,6 @@ public class IncomeFragment extends Fragment {
             {
                 ex.printStackTrace();
             }
-        }
-        else
-        {
-            msg.setText("Нет записей расходов!");
-            msg.show();
         }
     }
 }

@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,7 +33,7 @@ public class ExpensesFragment extends Fragment {
     Toast msg;
     RecyclerView rvExpenses;
     ExpenseAdapter adapter;
-    ArrayList<Operation> expenses = new ArrayList<>();
+    ArrayList<Operation> expenses;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,6 +47,7 @@ public class ExpensesFragment extends Fragment {
 
     public void ListExpenses()
     {
+        expenses = new ArrayList<>();
         Client client = new Client();
         String data = client.get_all_expenses(Param.id_user);
         if (data != null) {
@@ -69,11 +72,6 @@ public class ExpensesFragment extends Fragment {
             {
                 ex.printStackTrace();
             }
-        }
-        else
-        {
-            msg.setText("Нет записей доходов!");
-            msg.show();
         }
     }
 }
