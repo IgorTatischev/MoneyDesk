@@ -116,6 +116,28 @@ public class Client {
         request.post("get_sumincome_today", obj.toString());
         return request.getData();
     }
+    //расходы за месяц
+    public String get_totalincome_month(int id) {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("id_user", id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        request.post("get_totalincome_month", obj.toString());
+        return request.getData();
+    }
+    //доходы за месяц
+    public String get_totalexpense_month(int id) {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("id_user", id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        request.post("get_totalexpense_month", obj.toString());
+        return request.getData();
+    }
     //расходы со всех счетов
     public String get_all_income(int id) {
         JSONObject obj = new JSONObject();

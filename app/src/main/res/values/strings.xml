@@ -13,10 +13,13 @@
     <string name="textUser">User:</string>
     <string name="textPass">Password:</string>
     <string name="textReg">Регистрация</string>
+    <string name="textPeroid">Период:</string>
+    <string name="textIncome">Расходы</string>
+    <string name="textExpense">Доходы</string>
     <string name="menu_main">Главная</string>
     <string name="menu_check">Счета</string>
     <string name="menu_category">Категории</string>
-    <string name="menu_chart">Обзор</string>
+    <string name="menu_chart">Обзор за месяц</string>
     <string name="item_check">Счёт</string>
     <string name="item_amount">Баланс</string>
     <string name="item_category">Категория</string>
