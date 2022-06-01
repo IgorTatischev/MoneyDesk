@@ -76,7 +76,6 @@ public class PieChartFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-
         return view;
     }
 

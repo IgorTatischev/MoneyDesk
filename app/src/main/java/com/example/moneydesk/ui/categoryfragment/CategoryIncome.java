@@ -15,7 +15,7 @@ import com.example.moneydesk.databinding.FragmentCategoryIncomeBinding;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.math.BigDecimal;
+
 import java.util.ArrayList;
 
 
@@ -23,8 +23,8 @@ public class CategoryIncome extends Fragment {
 
     private FragmentCategoryIncomeBinding binding;
     RecyclerView rvCategoryInc;
-    CategoryAdapter adapter;
-    ArrayList<Category> categories = new ArrayList<>();
+    CategoryIncomeAdapter adapter;
+    ArrayList<Category> categories;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,6 +38,7 @@ public class CategoryIncome extends Fragment {
 
     public void ListCategoryInc()
     {
+        categories = new ArrayList<>();
         Client client = new Client();
         String data = client.get_category_income(Param.id_user);
         try
@@ -49,7 +50,7 @@ public class CategoryIncome extends Fragment {
                 String name = rec.getString("name");
                 categories.add(new Category(id, name));
             }
-            adapter = new CategoryAdapter(categories,getActivity());
+            adapter = new CategoryIncomeAdapter(categories,getActivity());
             rvCategoryInc.setAdapter(adapter);
             rvCategoryInc.setLayoutManager(new LinearLayoutManager(getActivity()));
             rvCategoryInc.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));

@@ -1,4 +1,4 @@
-package com.example.moneydesk.ui.stats;
+package com.example.moneydesk;
 
 import android.os.Bundle;
 
@@ -8,9 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.moneydesk.Client;
-import com.example.moneydesk.Param;
-import com.example.moneydesk.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;

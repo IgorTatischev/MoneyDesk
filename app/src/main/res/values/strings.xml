@@ -4,12 +4,8 @@
     <string name="btnReg">Регистрация</string>
     <string name="btnOK">OK</string>
     <string name="btnCancel">Cancel</string>
-    <string name="btnAdd">Add</string>
-    <string name="btnClose">Close</string>
     <string name="btnDelete">Удалить</string>
-    <string name="bntRename">Rename</string>
     <string name="bntExit">Выход</string>
-    <string name="btnSave">Save</string>
     <string name="textUser">User:</string>
     <string name="textPass">Password:</string>
     <string name="textReg">Регистрация</string>

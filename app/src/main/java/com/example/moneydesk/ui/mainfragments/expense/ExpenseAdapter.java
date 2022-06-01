@@ -1,28 +1,37 @@
 package com.example.moneydesk.ui.mainfragments.expense;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.moneydesk.Client;
 import com.example.moneydesk.R;
 import com.example.moneydesk.ui.mainfragments.Operation;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ViewHolder> {
 
-    private Context context;
     private List<Operation> expenseList;
+    private Context context;
+    Toast msg;
+
     public ExpenseAdapter(List<Operation> operations, Context context) {
         expenseList = operations;
         this.context = context;
+        msg = Toast.makeText(context,"",Toast.LENGTH_SHORT);
     }
 
     @NonNull
@@ -42,6 +51,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ViewHold
         holder.expenseAmount.setText("+" + operation.getAmount().toString());
         holder.expenseCheck.setText(operation.getCheck());
         holder.expenseDate.setText(operation.getDate());
+        holder.operation = operation;
     }
 
     @Override
@@ -55,6 +65,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ViewHold
         public  TextView expenseCheck;
         public  TextView expenseDate;
         public ImageButton btnDelete;
+        Operation operation;
         public ViewHolder(View itemView) {
             super(itemView);
             categoryName = itemView.findViewById(R.id.textCategory);
@@ -62,19 +73,27 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ViewHold
             expenseCheck = itemView.findViewById(R.id.textCheck);
             expenseDate = itemView.findViewById(R.id.textDate);
             btnDelete = itemView.findViewById(R.id.deleteExpense);
-            final EditText editText = new EditText(context);
-
-//            MaterialAlertDialogBuilder dialog = new
-//                    MaterialAlertDialogBuilder(context)
-//                    .setTitle("New map")
-//                    .setView(editText)
-//                    .setNegativeButton("Cancel", null)
-//                    .setPositiveButton("Edit", (dialog1, which) -> {
-//                        //...
-//                    });
             btnDelete.setOnClickListener(v -> {
-                notifyDataSetChanged();
-                //body deleting
+                Log.d("expense_id", String.valueOf(operation.getID()));
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context);
+                builder.setTitle("Удалить операцию")
+                        .setMessage("Вы уверены что хотите удалить данный доход?")
+                        .setNegativeButton("Отмена", null)
+                        .setPositiveButton("Удалить", (dialog1, which) -> {
+                            Client client = new Client();
+                            String data = client.delete_expense(operation.getID());
+                            if (!Objects.equals(data, "false")) {
+                                msg.setText("Операция успешно удалена!");
+                                expenseList.remove(operation); //удаляем из листа
+                                notifyDataSetChanged(); //вызоваем обновление
+                            }
+                            else {
+                                msg.setText("Не удалось удалить операцию!");
+                            }
+                            msg.show();
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.show();
             });
         }
     }

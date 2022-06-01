@@ -24,8 +24,8 @@ public class CategoryExpenses extends Fragment {
 
     private FragmentCategoryExpensesBinding binding;
     RecyclerView rvCategoryExp;
-    CategoryAdapter adapter;
-    ArrayList<Category> categories = new ArrayList<>();
+    CategoryExpenseAdapter adapter;
+    ArrayList<Category> categories;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,6 +39,7 @@ public class CategoryExpenses extends Fragment {
 
     public void ListCategoryExp()
     {
+        categories = new ArrayList<>();
         Client client = new Client();
         String data = client.get_category_expense(Param.id_user);
         try
@@ -50,7 +51,7 @@ public class CategoryExpenses extends Fragment {
                 String name = rec.getString("name");
                 categories.add(new Category(id, name));
             }
-            adapter = new CategoryAdapter(categories,getActivity());
+            adapter = new CategoryExpenseAdapter(categories,getActivity());
             rvCategoryExp.setAdapter(adapter);
             rvCategoryExp.setLayoutManager(new LinearLayoutManager(getActivity()));
             rvCategoryExp.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));

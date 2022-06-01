@@ -16,6 +16,8 @@ import com.example.moneydesk.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Objects;
+
 public class Registration extends AppCompatActivity {
 
     EditText user;
@@ -35,7 +37,7 @@ public class Registration extends AppCompatActivity {
     public void onRegClick(View view) {
         Client client = new Client();
         String data = client.reg_user(user.getText().toString(), pass.getText().toString());
-        if (data == "true") {
+        if (!Objects.equals(data, "false")) {
             Intent intent = new Intent(Registration.this, Authorization.class);
             intent.putExtra("user",user.getText().toString());
             intent.putExtra("password", pass.getText().toString());
@@ -43,7 +45,7 @@ public class Registration extends AppCompatActivity {
             finish();
         }
         else {
-            msg.setText("Registration failed!");
+            msg.setText("Неудачно!");
             msg.show();
         }
     }
