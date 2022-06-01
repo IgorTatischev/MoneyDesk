@@ -10,8 +10,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.MoneyDesk">
+        android:theme="@style/Theme.MoneyDesk"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".AddActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false"
@@ -34,4 +37,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

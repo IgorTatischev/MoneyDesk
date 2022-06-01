@@ -3,13 +3,15 @@
     <string name="btnLogin">Войти</string>
     <string name="btnReg">Регистрация</string>
     <string name="btnOK">OK</string>
-    <string name="btnCancel">Cancel</string>
+    <string name="btnCancel">Отмена</string>
     <string name="btnDelete">Удалить</string>
     <string name="bntExit">Выход</string>
-    <string name="textUser">User:</string>
-    <string name="textPass">Password:</string>
+    <string name="btnAdd">Добавить</string>
+    <string name="textUser">Логин:</string>
+    <string name="textPass">Пароль:</string>
     <string name="textReg">Регистрация</string>
     <string name="textPeroid">Период:</string>
+    <string name="textType">Тип:</string>
     <string name="textIncome">Расходы за месяц</string>
     <string name="textExpense">Доходы за месяц</string>
     <string name="menu_main">Главная</string>
@@ -18,6 +20,6 @@
     <string name="menu_chart">Обзор</string>
     <string name="item_check">Счёт</string>
     <string name="item_amount">Баланс</string>
-    <string name="item_category">Категория</string>
+    <string name="item_category">Категория:</string>
     <string name="item_date">Дата</string>
 </resources>

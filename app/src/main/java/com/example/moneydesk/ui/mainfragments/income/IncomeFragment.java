@@ -1,19 +1,23 @@
 package com.example.moneydesk.ui.mainfragments.income;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.moneydesk.AddActivity;
 import com.example.moneydesk.Client;
 import com.example.moneydesk.Param;
 import com.example.moneydesk.R;
+import com.example.moneydesk.ui.entry.Registration;
 import com.example.moneydesk.ui.mainfragments.Operation;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,7 +28,6 @@ import java.util.ArrayList;
 
 public class IncomeFragment extends Fragment {
 
-    Toast msg;
     RecyclerView rvIncome;
     IncomeAdapter adapter;
     ArrayList<Operation> incomes;
@@ -32,11 +35,15 @@ public class IncomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_income,container,false);
-        msg = Toast.makeText(getActivity(),"",Toast.LENGTH_SHORT);
-        rvIncome = root.findViewById(R.id.listincome);
+        View view = inflater.inflate(R.layout.fragment_income,container,false);
+        rvIncome = view.findViewById(R.id.listincome);
         ListIncome();
-        return root;
+        FloatingActionButton fab = view.findViewById(R.id.addIncome);
+        fab.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), AddActivity.class);
+            startActivity(intent);
+        });
+        return view;
     }
 
     public void ListIncome()

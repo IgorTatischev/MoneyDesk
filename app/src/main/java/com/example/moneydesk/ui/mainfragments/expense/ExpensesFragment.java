@@ -1,5 +1,6 @@
 package com.example.moneydesk.ui.mainfragments.expense;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +12,12 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.moneydesk.AddActivity;
 import com.example.moneydesk.Client;
 import com.example.moneydesk.Param;
 import com.example.moneydesk.R;
 import com.example.moneydesk.ui.mainfragments.Operation;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,7 +29,6 @@ import java.util.ArrayList;
 
 public class ExpensesFragment extends Fragment {
 
-    Toast msg;
     RecyclerView rvExpenses;
     ExpenseAdapter adapter;
     ArrayList<Operation> expenses;
@@ -35,9 +37,13 @@ public class ExpensesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_expenses,container,false);
-        msg = Toast.makeText(getActivity(),"",Toast.LENGTH_SHORT);
         rvExpenses = view.findViewById(R.id.listexpenses);
         ListExpenses();
+        FloatingActionButton fab = view.findViewById(R.id.addExpense);
+        fab.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), AddActivity.class);
+            startActivity(intent);
+        });
         return view;
     }
 

@@ -18,6 +18,7 @@ import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import static android.content.ContentValues.TAG;
 
@@ -161,30 +162,6 @@ public class Client {
         request.post("get_all_expenses", obj.toString());
         return request.getData();
     }
-    //расходы с конкретного счета
-    public String get_check_income(int id,int id_check) {
-        JSONObject obj = new JSONObject();
-        try {
-            obj.put("id_user", id);
-            obj.put("id_check", id_check);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        request.post("get_check_income", obj.toString());
-        return request.getData();
-    }
-    //доходы с конкретного счета
-    public String get_check_expenses(int id,int id_check) {
-        JSONObject obj = new JSONObject();
-        try {
-            obj.put("id_user", id);
-            obj.put("id_check", id_check);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        request.post("get_check_expenses", obj.toString());
-        return request.getData();
-    }
 
     public String add_check(String name, int id, Double sum) {
         JSONObject obj = new JSONObject();
@@ -196,6 +173,82 @@ public class Client {
             e.printStackTrace();
         }
         request.post("add_check", obj.toString());
+        return request.getData();
+    }
+
+    public String add_income(Double sum, Date date, int check,int category) {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("sum", sum);
+            obj.put("date", date);
+            obj.put("check_id", check);
+            obj.put("category", category);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        request.post("add_income", obj.toString());
+        return request.getData();
+    }
+
+    public String update_check_income(Double sum,int check) {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("sum", sum);
+            obj.put("check_id", check);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        request.post("update_check_income", obj.toString());
+        return request.getData();
+    }
+
+    public String update_check_expense(Double sum,int check) {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("sum", sum);
+            obj.put("check_id", check);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        request.post("update_check_expense", obj.toString());
+        return request.getData();
+    }
+
+    public String add_expense(Double sum, Date date, int check,int category) {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("sum", sum);
+            obj.put("date", date);
+            obj.put("check_id", check);
+            obj.put("category", category);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        request.post("add_expense", obj.toString());
+        return request.getData();
+    }
+
+    public String add_incomecategory(String name, int id) {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("category_name", name);
+            obj.put("id_user", id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        request.post("add_incomecategory", obj.toString());
+        return request.getData();
+    }
+
+    public String add_expensecategory(String name, int id) {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("category_name", name);
+            obj.put("id_user", id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        request.post("add_expensecategory", obj.toString());
         return request.getData();
     }
 

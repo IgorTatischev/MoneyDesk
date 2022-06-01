@@ -17,17 +17,16 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:gravity="center"
-            android:text="@string/item_check"
+            android:text="@string/textType"
             android:textColor="#000000"
             android:textSize="16sp" />
 
-        <EditText
-            android:id="@+id/editName"
+        <Spinner
+            android:id="@+id/spinnerCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
             android:minHeight="48dp"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
     </LinearLayout>
 
     <LinearLayout
@@ -42,15 +41,15 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:gravity="center"
-            android:text="@string/item_amount"
-            android:textColor="@color/black"
+            android:text="@string/item_category"
+            android:textColor="#000000"
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/editAmount"
+            android:id="@+id/editCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal|numberSigned"
+            android:inputType="textPersonName"
             android:minHeight="48dp"
             tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>

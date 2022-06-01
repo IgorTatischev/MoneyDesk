@@ -42,12 +42,12 @@ public class CheckFragment extends Fragment {
         //добавление счёта
         View customLayout = getLayoutInflater().inflate(R.layout.check_add, null,false);
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(getActivity());
-        EditText textName = customLayout.findViewById(R.id.editName);
-        EditText textAmount = customLayout.findViewById(R.id.editAmount);
+        final EditText textName = customLayout.findViewById(R.id.editName);
+        final EditText textAmount = customLayout.findViewById(R.id.editAmount);
         builder.setView(customLayout)
                 .setTitle("Новый счёт")
                 .setNegativeButton("Отмена", null)
-                .setPositiveButton("Добавить", (dialog1, which) -> {
+                .setPositiveButton("Добавить", (dialog, which) -> {
                     String name = String.valueOf(textName.getText());
                     Double amount = Double.valueOf(textAmount.getText().toString());
                     Client client = new Client();
@@ -63,9 +63,7 @@ public class CheckFragment extends Fragment {
                 });
         AlertDialog dialog = builder.create();
         FloatingActionButton fab = root.findViewById(R.id.addCheck);
-        fab.setOnClickListener(view -> {
-            dialog.show();
-        });
+        fab.setOnClickListener(view -> dialog.show());
         return root;
     }
 

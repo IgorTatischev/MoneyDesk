@@ -1,4 +1,4 @@
-package com.example.moneydesk.ui.categoryfragment;
+package com.example.moneydesk.ui.categoryfragment.income;
 
 import android.content.Context;
 import android.util.Log;
@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.moneydesk.Client;
 import com.example.moneydesk.R;
+import com.example.moneydesk.ui.categoryfragment.Category;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.List;

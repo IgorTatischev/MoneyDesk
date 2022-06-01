@@ -1,4 +1,4 @@
-package com.example.moneydesk.ui.categoryfragment;
+package com.example.moneydesk.ui.categoryfragment.expense;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -11,8 +11,11 @@ import android.view.ViewGroup;
 
 import com.example.moneydesk.Client;
 import com.example.moneydesk.Param;
-import com.example.moneydesk.R;
 import com.example.moneydesk.databinding.FragmentCategoryExpensesBinding;
+import com.example.moneydesk.ui.categoryfragment.Category;
+import com.example.moneydesk.ui.categoryfragment.CategoryDialogFragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,6 +37,14 @@ public class CategoryExpenses extends Fragment {
         View root = binding.getRoot();
         rvCategoryExp = binding.listcategoryexp;
         ListCategoryExp();
+        FloatingActionButton fab = binding.addCategoryExp;
+        fab.setOnClickListener(v -> {
+            CategoryDialogFragment dialog = new CategoryDialogFragment();
+            dialog.show(getActivity().getSupportFragmentManager(), "custom");
+            dialog.setOnContinueClick(() -> {
+                ListCategoryExp();
+            });
+        });
         return root;
     }
 
