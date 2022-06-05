@@ -13,7 +13,7 @@
         android:theme="@style/Theme.MoneyDesk"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".AddActivity"
+            android:name=".ui.addactivity.AddActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

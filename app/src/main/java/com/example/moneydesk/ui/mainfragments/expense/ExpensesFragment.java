@@ -1,22 +1,23 @@
 package com.example.moneydesk.ui.mainfragments.expense;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.moneydesk.AddActivity;
+import com.example.moneydesk.ui.addactivity.AddActivity;
 import com.example.moneydesk.Client;
 import com.example.moneydesk.Param;
 import com.example.moneydesk.R;
-import com.example.moneydesk.ui.mainfragments.Operation;
+import com.example.moneydesk.ui.items.Operation;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
@@ -42,9 +43,18 @@ public class ExpensesFragment extends Fragment {
         FloatingActionButton fab = view.findViewById(R.id.addExpense);
         fab.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), AddActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent,1);
         });
         return view;
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK){
+                ListExpenses();
+            }
+        }
     }
 
     public void ListExpenses()
@@ -61,9 +71,10 @@ public class ExpensesFragment extends Fragment {
                     int id = rec.getInt("id");
                     String category = rec.getString("category");
                     BigDecimal amount = BigDecimal.valueOf(rec.getDouble("sum"));
+                    int check_id = rec.getInt("check_id");
                     String check = rec.getString("checkname");
                     String date = rec.getString("date");
-                    expenses.add(new Operation(id,category,amount,check,date));
+                    expenses.add(new Operation(id,category,amount,check_id,check,date));
                     adapter = new ExpenseAdapter(expenses,getActivity());
                     rvExpenses.setAdapter(adapter);
                     rvExpenses.setLayoutManager(new LinearLayoutManager(getActivity()));

@@ -176,7 +176,7 @@ public class Client {
         return request.getData();
     }
 
-    public String add_income(Double sum, Date date, int check,int category) {
+    public String add_income(Double sum, String date, int check,int category) {
         JSONObject obj = new JSONObject();
         try {
             obj.put("sum", sum);
@@ -214,7 +214,7 @@ public class Client {
         return request.getData();
     }
 
-    public String add_expense(Double sum, Date date, int check,int category) {
+    public String add_expense(Double sum, String date, int check,int category) {
         JSONObject obj = new JSONObject();
         try {
             obj.put("sum", sum);

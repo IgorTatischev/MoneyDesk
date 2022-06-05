@@ -57,7 +57,6 @@ public class PieChartFragment extends Fragment {
                 android.R.layout.simple_spinner_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        spinner.setSelection(0);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -90,7 +89,7 @@ public class PieChartFragment extends Fragment {
         pieChart.setTransparentCircleRadius(30f); // Устанавливаем радиус кольца
         pieChart.getLegend().setEnabled(false); //убрать легенду
         pieChart.getDescription().setEnabled(false); //убрать описание
-        pieChart.animateY(1400, Easing.EaseInOutQuad);
+        pieChart.animateY(1500, Easing.EaseInOutQuad);
         hbarChart.getLegend().setEnabled(false);
         hbarChart.getDescription().setEnabled(false);
         hbarChart.getAxisLeft().setEnabled(false);
@@ -139,13 +138,17 @@ public class PieChartFragment extends Fragment {
         pieChart.setData(piedata);
         pieChart.invalidate();
         XAxis xAxis = hbarChart.getXAxis();
-        xAxis.setLabelCount(values.size());
-        xAxis.setValueFormatter(new ValueFormatter() {
-            @Override
-            public String getFormattedValue(float value) {
-                return values.get((int) value);
-            }
-        });
+        if (values.size() <= 1)
+            hbarChart.getXAxis().setEnabled(false);
+        else {
+            xAxis.setLabelCount(values.size());
+            xAxis.setValueFormatter(new ValueFormatter() {
+                @Override
+                public String getFormattedValue(float value) {
+                    return values.get((int) value);
+                }
+            });
+        }
         BarDataSet barDataSet = new BarDataSet(barlist,"Категории");
         barDataSet.setColors(colors);
         BarData bardata = new BarData(barDataSet);
@@ -190,13 +193,17 @@ public class PieChartFragment extends Fragment {
         pieChart.setData(piedata);
         pieChart.invalidate();
         XAxis xAxis = hbarChart.getXAxis();
-        xAxis.setLabelCount(values.size());
-        xAxis.setValueFormatter(new ValueFormatter() {
-            @Override
-            public String getFormattedValue(float value) {
-                return values.get((int) value);
-            }
-        });
+        if (values.size() <= 1)
+            hbarChart.getXAxis().setEnabled(false);
+        else {
+            xAxis.setLabelCount(values.size());
+            xAxis.setValueFormatter(new ValueFormatter() {
+                @Override
+                public String getFormattedValue(float value) {
+                    return values.get((int) value);
+                }
+            });
+        }
         BarDataSet barDataSet = new BarDataSet(barlist,"Категории");
         barDataSet.setColors(colors);
         BarData bardata = new BarData(barDataSet);
@@ -241,13 +248,17 @@ public class PieChartFragment extends Fragment {
         pieChart.setData(piedata);
         pieChart.invalidate();
         XAxis xAxis = hbarChart.getXAxis();
-        xAxis.setLabelCount(values.size());
-        xAxis.setValueFormatter(new ValueFormatter() {
-            @Override
-            public String getFormattedValue(float value) {
-                return values.get((int) value);
-            }
-        });
+        if (values.size() <= 1)
+            hbarChart.getXAxis().setEnabled(false);
+        else {
+            xAxis.setLabelCount(values.size());
+            xAxis.setValueFormatter(new ValueFormatter() {
+                @Override
+                public String getFormattedValue(float value) {
+                    return values.get((int) value);
+                }
+            });
+        }
         BarDataSet barDataSet = new BarDataSet(barlist,"Категории");
         barDataSet.setColors(colors);
         BarData bardata = new BarData(barDataSet);

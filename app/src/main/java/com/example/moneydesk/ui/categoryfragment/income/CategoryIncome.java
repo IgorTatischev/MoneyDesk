@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import com.example.moneydesk.Client;
 import com.example.moneydesk.Param;
 import com.example.moneydesk.databinding.FragmentCategoryIncomeBinding;
-import com.example.moneydesk.ui.categoryfragment.Category;
+import com.example.moneydesk.ui.items.Category;
 import com.example.moneydesk.ui.categoryfragment.CategoryDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

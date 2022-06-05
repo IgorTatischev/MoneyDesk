@@ -40,33 +40,39 @@ public class CategoryDialogFragment extends DialogFragment {
                 .setTitle("Добавление категории")
                 .setMessage("Введите название категории")
                 .setNegativeButton("Отмена", null)
-                .setPositiveButton("OK", (dialog, which) -> {
-                    String name = String.valueOf(textName.getText());
-                    Client client = new Client();
-                    if(spinner.getSelectedItem().equals("Расход"))
+                .setPositiveButton("Добавить", (dialog, which) -> {
+                    if (textName.getText().length() == 0)
                     {
-                        String data = client.add_incomecategory(name,Param.id_user);
-                        if (!Objects.equals(data, "false")) {
-                            msg.setText("Категория расхода успешно добавлена!");
-                            continueClick.onContinueClicked();
-
-                        }
-                        else {
-                            msg.setText("Не удалось добавить категорию!");
-                        }
+                        msg.setText("Введите название категории!");
                         msg.show();
                     }
-                    else if(spinner.getSelectedItem().equals("Доход"))
-                    {
-                        String data = client.add_expensecategory(name,Param.id_user);
-                        if (!Objects.equals(data, "false")) {
-                            msg.setText("Категория дохода успешно добавлена!");
-                            continueClick.onContinueClicked();
+                    else {
+                        String name = String.valueOf(textName.getText());
+                        Client client = new Client();
+                        if(spinner.getSelectedItem().equals("Расход"))
+                        {
+                            String data = client.add_incomecategory(name,Param.id_user);
+                            if (!Objects.equals(data, "false")) {
+                                msg.setText("Категория расхода успешно добавлена!");
+                                continueClick.onContinueClicked();
+                            }
+                            else {
+                                msg.setText("Не удалось добавить категорию!");
+                            }
+                            msg.show();
                         }
-                        else {
-                            msg.setText("Не удалось добавить категорию!");
+                        else if(spinner.getSelectedItem().equals("Доход"))
+                        {
+                            String data = client.add_expensecategory(name,Param.id_user);
+                            if (!Objects.equals(data, "false")) {
+                                msg.setText("Категория дохода успешно добавлена!");
+                                continueClick.onContinueClicked();
+                            }
+                            else {
+                                msg.setText("Не удалось добавить категорию!");
+                            }
+                            msg.show();
                         }
-                        msg.show();
                     }
                 })
                 .create();

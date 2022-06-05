@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.moneydesk.Client;
 import com.example.moneydesk.R;
-import com.example.moneydesk.ui.mainfragments.Operation;
+import com.example.moneydesk.ui.items.Operation;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.List;
@@ -82,6 +81,9 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.ViewHolder
                         .setNegativeButton("Отмена", null)
                         .setPositiveButton("Удалить", (dialog1, which) -> {
                             Client client = new Client();
+                            Double amount = operation.getAmount().doubleValue();
+                            int id_check = operation.getCheckID();
+                            client.update_check_expense(amount,id_check);
                             String data = client.delete_income(operation.getID());
                             if (!Objects.equals(data, "false")) {
                                 msg.setText("Операция успешно удалена!");

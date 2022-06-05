@@ -1,4 +1,4 @@
-package com.example.moneydesk.ui.checkfragment;
+package com.example.moneydesk.ui.items;
 
 import java.math.BigDecimal;
 
@@ -34,5 +34,10 @@ public class Check {
 
     public void setLastId(int lastId) {
         this.Id = lastId;
+    }
+
+    @Override
+    public String toString()  {
+        return this.checkName;
     }
 }

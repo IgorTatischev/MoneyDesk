@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddActivity">
+    tools:context=".ui.addactivity.AddActivity">
 
     <EditText
-        android:id="@+id/textName"
+        android:id="@+id/textSum"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -16,7 +16,8 @@
         android:background="@drawable/custom_input"
         android:drawablePadding="10dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:hint="Сумма"
+        android:inputType="numberSigned|number|numberDecimal"
         android:minHeight="48dp"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
@@ -38,6 +39,11 @@
         android:background="@drawable/custom_input"
         android:drawablePadding="10dp"
         android:ems="10"
+        android:hint="Дата"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:minHeight="48dp"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
@@ -45,12 +51,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textName"
+        app:layout_constraintTop_toBottomOf="@+id/textSum"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Spinner
         android:id="@+id/checkSpinner"
         android:background="@drawable/spinnerbackground"
+        android:spinnerMode="dialog"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
@@ -64,6 +73,9 @@
 
     <Spinner
         android:id="@+id/typeSpinner"
+        android:background="@drawable/spinnerbackground"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
@@ -77,6 +89,10 @@
 
     <Spinner
         android:id="@+id/categorySpinner"
+        android:background="@drawable/spinnerbackground"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:spinnerMode="dialog"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"

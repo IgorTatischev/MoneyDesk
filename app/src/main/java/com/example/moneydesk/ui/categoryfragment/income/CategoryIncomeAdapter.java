@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.moneydesk.Client;
 import com.example.moneydesk.R;
-import com.example.moneydesk.ui.categoryfragment.Category;
+import com.example.moneydesk.ui.items.Category;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.List;

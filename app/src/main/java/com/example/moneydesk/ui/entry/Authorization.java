@@ -39,16 +39,23 @@ public class Authorization extends AppCompatActivity {
 
     public void onLogIn(View v)
     {
-        Client client = new Client();
-        String data = client.get_user(user.getText().toString(), pass.getText().toString());
-        if (data != null) {
-            Param.id_user = Integer.parseInt(data);
-            Intent intent = new Intent(Authorization.this, MainActivity.class);
-            startActivity(intent);
+        if (user.getText().length() == 0 || pass.getText().length() == 0)
+        {
+            msg.setText("Что-то не ввели!");
+            msg.show();
         }
         else {
-            msg.setText("Пользователь не существует или введены неверные данные!");
-            msg.show();
+            Client client = new Client();
+            String data = client.get_user(user.getText().toString(), pass.getText().toString());
+            if (data != null) {
+                Param.id_user = Integer.parseInt(data);
+                Intent intent = new Intent(Authorization.this, MainActivity.class);
+                startActivity(intent);
+            }
+            else {
+                msg.setText("Пользователь не существует или введены неверные данные!");
+                msg.show();
+            }
         }
     }
 

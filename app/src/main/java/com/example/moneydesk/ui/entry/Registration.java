@@ -35,18 +35,25 @@ public class Registration extends AppCompatActivity {
     }
 
     public void onRegClick(View view) {
-        Client client = new Client();
-        String data = client.reg_user(user.getText().toString(), pass.getText().toString());
-        if (!Objects.equals(data, "false")) {
-            Intent intent = new Intent(Registration.this, Authorization.class);
-            intent.putExtra("user",user.getText().toString());
-            intent.putExtra("password", pass.getText().toString());
-            setResult(RESULT_OK, intent);
-            finish();
+        if (user.getText().length() == 0 || pass.getText().length() == 0)
+        {
+            msg.setText("Что-то не ввели!");
+            msg.show();
         }
         else {
-            msg.setText("Неудачно!");
-            msg.show();
+            Client client = new Client();
+            String data = client.reg_user(user.getText().toString(), pass.getText().toString());
+            if (!Objects.equals(data, "false")) {
+                Intent intent = new Intent(Registration.this, Authorization.class);
+                intent.putExtra("user",user.getText().toString());
+                intent.putExtra("password", pass.getText().toString());
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+            else {
+                msg.setText("Неудачно!");
+                msg.show();
+            }
         }
     }
 

@@ -1,4 +1,4 @@
-package com.example.moneydesk.ui.mainfragments;
+package com.example.moneydesk.ui.items;
 
 import java.math.BigDecimal;
 
@@ -8,11 +8,13 @@ public class Operation {
     private String operationCheck;
     private String operationDate;
     private int Id;
-    public Operation(int id, String category, BigDecimal amount,String check,String date) {
+    private int id_check;
+    public Operation(int id, String category, BigDecimal amount,int check_id, String check,String date) {
         operationCategory = category;
         operationAmount = amount;
         operationCheck = check;
         operationDate = date;
+        id_check = check_id;
         Id = id;
     }
 
@@ -36,20 +38,12 @@ public class Operation {
         return Id;
     }
 
+    public int getCheckID() {
+        return id_check;
+    }
+
     public void setCategory(String operationCategory) {
         this.operationCategory = operationCategory;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.operationAmount = amount;
-    }
-
-    public void setCheck(String operationCheck) {
-        this.operationCheck = operationCheck;
-    }
-
-    public void setOperationCategory(String operationDate) {
-        this.operationDate = operationDate;
     }
 
     public void setLastId(int lastId) {

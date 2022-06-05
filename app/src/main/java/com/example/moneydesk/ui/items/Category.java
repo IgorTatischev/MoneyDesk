@@ -1,4 +1,4 @@
-package com.example.moneydesk.ui.categoryfragment;
+package com.example.moneydesk.ui.items;
 
 public class Category {
     private String categoryName;
@@ -22,5 +22,10 @@ public class Category {
 
     public void setLastId(int lastId) {
         this.Id = lastId;
+    }
+
+    @Override
+    public String toString()  {
+        return this.categoryName;
     }
 }

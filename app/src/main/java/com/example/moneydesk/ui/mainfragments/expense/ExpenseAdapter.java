@@ -16,9 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.moneydesk.Client;
 import com.example.moneydesk.R;
-import com.example.moneydesk.ui.mainfragments.Operation;
+import com.example.moneydesk.ui.items.Operation;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
@@ -81,6 +82,9 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ViewHold
                         .setNegativeButton("Отмена", null)
                         .setPositiveButton("Удалить", (dialog1, which) -> {
                             Client client = new Client();
+                            Double amount = operation.getAmount().doubleValue();
+                            int id_check = operation.getCheckID();
+                            client.update_check_income(amount,id_check);
                             String data = client.delete_expense(operation.getID());
                             if (!Objects.equals(data, "false")) {
                                 msg.setText("Операция успешно удалена!");

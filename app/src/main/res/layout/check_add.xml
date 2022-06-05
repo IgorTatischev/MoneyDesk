@@ -50,7 +50,7 @@
             android:id="@+id/editAmount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal|numberSigned"
+            android:inputType="numberSigned|number|numberDecimal"
             android:minHeight="48dp"
             tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>

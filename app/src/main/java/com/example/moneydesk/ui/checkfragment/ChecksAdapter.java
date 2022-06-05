@@ -14,8 +14,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.moneydesk.Client;
-import com.example.moneydesk.Param;
 import com.example.moneydesk.R;
+import com.example.moneydesk.ui.items.Check;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.List;

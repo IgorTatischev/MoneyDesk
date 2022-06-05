@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.moneydesk.Client;
 import com.example.moneydesk.Param;
 import com.example.moneydesk.R;
+import com.example.moneydesk.ui.items.Check;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import org.json.JSONArray;
@@ -48,16 +49,22 @@ public class CheckFragment extends Fragment {
                 .setTitle("Новый счёт")
                 .setNegativeButton("Отмена", null)
                 .setPositiveButton("Добавить", (dialog, which) -> {
-                    String name = String.valueOf(textName.getText());
-                    Double amount = Double.valueOf(textAmount.getText().toString());
-                    Client client = new Client();
-                    String data = client.add_check(name,Param.id_user,amount);
-                    ListChecks();
-                    if (!Objects.equals(data, "false")) {
-                        msg.setText("Счёт успешно добавлен!");
+                    if (textName.getText().length() == 0 || textAmount.getText().length() == 0)
+                    {
+                        msg.setText("Что-то не ввели!");
                     }
                     else {
-                        msg.setText("Не удалось добавить счёт!");
+                        String name = String.valueOf(textName.getText());
+                        Double amount = Double.valueOf(textAmount.getText().toString());
+                        Client client = new Client();
+                        String data = client.add_check(name,Param.id_user,amount);
+                        ListChecks();
+                        if (!Objects.equals(data, "false")) {
+                            msg.setText("Счёт успешно добавлен!");
+                        }
+                        else {
+                            msg.setText("Не удалось добавить счёт!");
+                        }
                     }
                     msg.show();
                 });
