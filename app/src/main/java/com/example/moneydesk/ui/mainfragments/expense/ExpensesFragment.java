@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.moneydesk.ui.addactivity.AddActivity;
+import com.example.moneydesk.ui.mainfragments.AddActivity;
 import com.example.moneydesk.Client;
 import com.example.moneydesk.Param;
 import com.example.moneydesk.R;

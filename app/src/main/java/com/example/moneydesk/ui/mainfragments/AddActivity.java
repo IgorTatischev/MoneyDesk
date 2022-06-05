@@ -1,4 +1,4 @@
-package com.example.moneydesk.ui.addactivity;
+package com.example.moneydesk.ui.mainfragments;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,11 +13,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.moneydesk.Client;
-import com.example.moneydesk.MainActivity;
 import com.example.moneydesk.Param;
 import com.example.moneydesk.R;
-import com.example.moneydesk.ui.entry.Authorization;
-import com.example.moneydesk.ui.entry.Registration;
 import com.example.moneydesk.ui.items.Category;
 import com.example.moneydesk.ui.items.Check;
 import com.example.moneydesk.ui.mainfragments.expense.ExpensesFragment;
