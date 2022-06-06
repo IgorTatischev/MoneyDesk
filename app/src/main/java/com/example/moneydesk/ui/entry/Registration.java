@@ -1,20 +1,15 @@
 package com.example.moneydesk.ui.entry;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.moneydesk.Client;
-import com.example.moneydesk.MainActivity;
-import com.example.moneydesk.Param;
-import com.example.moneydesk.R;
+import androidx.appcompat.app.AppCompatActivity;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.moneydesk.Client;
+import com.example.moneydesk.R;
 
 import java.util.Objects;
 

@@ -4,14 +4,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+
 import com.example.moneydesk.ViewPagerAdapter;
-import com.example.moneydesk.ui.mainfragments.income.IncomeFragment;
-import com.example.moneydesk.ui.mainfragments.expense.ExpensesFragment;
 import com.example.moneydesk.databinding.FragmentMainBinding;
+import com.example.moneydesk.ui.mainfragments.expense.ExpensesFragment;
+import com.example.moneydesk.ui.mainfragments.income.IncomeFragment;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainFragment extends Fragment {

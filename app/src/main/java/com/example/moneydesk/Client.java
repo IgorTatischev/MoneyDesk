@@ -1,26 +1,7 @@
 package com.example.moneydesk;
 
-import android.app.Activity;
-import android.content.Context;
-import android.os.Build;
-import android.util.Log;
-import androidx.annotation.RequiresApi;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.math.BigDecimal;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import static android.content.ContentValues.TAG;
 
 public class Client {
     private HttpRequest request;

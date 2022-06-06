@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,7 +18,6 @@ import com.example.moneydesk.R;
 import com.example.moneydesk.ui.items.Operation;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 

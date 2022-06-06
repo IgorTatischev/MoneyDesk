@@ -1,13 +1,15 @@
 package com.example.moneydesk;
 
+import static android.content.ContentValues.TAG;
+
 import android.annotation.SuppressLint;
 import android.util.Log;
+
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import static android.content.ContentValues.TAG;
 
 public class HttpRequest {
     private String[] result = new String[1];
