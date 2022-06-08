@@ -13,7 +13,7 @@ import java.nio.charset.StandardCharsets;
 
 public class HttpRequest {
     private String[] result = new String[1];
-    private String host = "176.32.35.168";
+    private String host = "194.87.197.6";
     private int port = 3000;
     private String baseUrl;
 
