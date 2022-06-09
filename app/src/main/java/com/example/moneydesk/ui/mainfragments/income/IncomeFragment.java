@@ -1,7 +1,5 @@
 package com.example.moneydesk.ui.mainfragments.income;
 
-import static android.app.Activity.RESULT_OK;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;

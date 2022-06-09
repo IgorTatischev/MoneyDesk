@@ -19,7 +19,6 @@ import com.google.android.material.tabs.TabLayout;
 public class MainFragment extends Fragment {
 
     private FragmentMainBinding binding;
-
     private TabLayout tabLayout;
     private ViewPager viewPager;
 

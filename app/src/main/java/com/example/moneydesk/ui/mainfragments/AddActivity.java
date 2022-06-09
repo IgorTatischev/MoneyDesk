@@ -1,7 +1,6 @@
 package com.example.moneydesk.ui.mainfragments;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,8 +16,6 @@ import com.example.moneydesk.Param;
 import com.example.moneydesk.R;
 import com.example.moneydesk.ui.items.Category;
 import com.example.moneydesk.ui.items.Check;
-import com.example.moneydesk.ui.mainfragments.expense.ExpensesFragment;
-import com.example.moneydesk.ui.mainfragments.income.IncomeFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
