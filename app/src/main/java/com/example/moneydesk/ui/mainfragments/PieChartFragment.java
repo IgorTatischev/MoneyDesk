@@ -51,6 +51,12 @@ public class PieChartFragment extends Fragment {
         pieChart = view.findViewById(R.id.chart_pie);
         hbarChart = view.findViewById(R.id.chart_category);
         spinner = view.findViewById(R.id.spinnerDate);
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         String[] items = {"Месяц","Неделя","Сегодня"};
         loadChartView();
         ArrayAdapter<String> adapter = new ArrayAdapter(getActivity(),
@@ -75,7 +81,6 @@ public class PieChartFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-        return view;
     }
 
     private void loadChartView() {

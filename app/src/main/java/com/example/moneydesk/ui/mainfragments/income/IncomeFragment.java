@@ -33,28 +33,27 @@ public class IncomeFragment extends Fragment {
     RecyclerView rvIncome;
     IncomeAdapter adapter;
     ArrayList<Operation> incomes;
+    FloatingActionButton fab;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_income,container,false);
         rvIncome = view.findViewById(R.id.listincome);
-        ListIncome();
-        FloatingActionButton fab = view.findViewById(R.id.addIncome);
-        fab.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), AddActivity.class);
-            startActivityForResult(intent,1);
-        });
+        fab = view.findViewById(R.id.addIncome);
+        rvIncome.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvIncome.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
         return view;
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
-            if(resultCode == RESULT_OK){
-               ListIncome();
-            }
-        }
+    @Override
+    public void onResume() {
+        super.onResume();
+        ListIncome();
+        fab.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), AddActivity.class);
+            startActivity(intent);
+        });
     }
 
     public void ListIncome()
@@ -77,8 +76,6 @@ public class IncomeFragment extends Fragment {
                     incomes.add(new Operation(id,category,amount,check_id,check,date));
                     adapter = new IncomeAdapter(incomes,getActivity());
                     rvIncome.setAdapter(adapter);
-                    rvIncome.setLayoutManager(new LinearLayoutManager(getActivity()));
-                    rvIncome.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
                 }
             }
             catch (JSONException ex)

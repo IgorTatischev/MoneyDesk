@@ -1,10 +1,12 @@
 package com.example.moneydesk.ui.categoryfragment.expense;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,6 +32,7 @@ public class CategoryExpenses extends Fragment {
     RecyclerView rvCategoryExp;
     CategoryExpenseAdapter adapter;
     ArrayList<Category> categories;
+    FloatingActionButton fab;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,8 +40,16 @@ public class CategoryExpenses extends Fragment {
         binding = FragmentCategoryExpensesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         rvCategoryExp = binding.listcategoryexp;
+        fab = binding.addCategoryExp;
+        rvCategoryExp.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvCategoryExp.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+        return root;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         ListCategoryExp();
-        FloatingActionButton fab = binding.addCategoryExp;
         fab.setOnClickListener(v -> {
             CategoryDialogFragment dialog = new CategoryDialogFragment();
             dialog.show(getActivity().getSupportFragmentManager(), "custom");
@@ -46,7 +57,6 @@ public class CategoryExpenses extends Fragment {
                 ListCategoryExp();
             });
         });
-        return root;
     }
 
     public void ListCategoryExp()
@@ -65,8 +75,6 @@ public class CategoryExpenses extends Fragment {
             }
             adapter = new CategoryExpenseAdapter(categories,getActivity());
             rvCategoryExp.setAdapter(adapter);
-            rvCategoryExp.setLayoutManager(new LinearLayoutManager(getActivity()));
-            rvCategoryExp.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
         }
         catch (JSONException ex)
         {

@@ -30,6 +30,7 @@ public class CategoryIncome extends Fragment {
     RecyclerView rvCategoryInc;
     CategoryIncomeAdapter adapter;
     ArrayList<Category> categories;
+    FloatingActionButton fab;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,8 +38,16 @@ public class CategoryIncome extends Fragment {
         binding = FragmentCategoryIncomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         rvCategoryInc = binding.listcategoryinc;
+        fab = binding.addCategoryInc;
+        rvCategoryInc.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvCategoryInc.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+        return root;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         ListCategoryInc();
-        FloatingActionButton fab = binding.addCategoryInc;
         fab.setOnClickListener(v -> {
             CategoryDialogFragment dialog = new CategoryDialogFragment();
             dialog.show(getActivity().getSupportFragmentManager(), "custom");
@@ -46,7 +55,6 @@ public class CategoryIncome extends Fragment {
                 ListCategoryInc();
             });
         });
-        return root;
     }
 
     public void ListCategoryInc()
@@ -65,8 +73,6 @@ public class CategoryIncome extends Fragment {
             }
             adapter = new CategoryIncomeAdapter(categories,getActivity());
             rvCategoryInc.setAdapter(adapter);
-            rvCategoryInc.setLayoutManager(new LinearLayoutManager(getActivity()));
-            rvCategoryInc.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
         }
         catch (JSONException ex)
         {

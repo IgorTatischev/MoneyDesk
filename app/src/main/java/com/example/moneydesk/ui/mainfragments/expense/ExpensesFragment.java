@@ -33,28 +33,27 @@ public class ExpensesFragment extends Fragment {
     RecyclerView rvExpenses;
     ExpenseAdapter adapter;
     ArrayList<Operation> expenses;
+    FloatingActionButton fab;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_expenses,container,false);
         rvExpenses = view.findViewById(R.id.listexpenses);
-        ListExpenses();
-        FloatingActionButton fab = view.findViewById(R.id.addExpense);
-        fab.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), AddActivity.class);
-            startActivityForResult(intent,1);
-        });
+        fab = view.findViewById(R.id.addExpense);
+        rvExpenses.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvExpenses.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
         return view;
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
-            if(resultCode == RESULT_OK){
-                ListExpenses();
-            }
-        }
+    @Override
+    public void onResume() {
+        super.onResume();
+        ListExpenses();
+        fab.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), AddActivity.class);
+            startActivity(intent);
+        });
     }
 
     public void ListExpenses()
@@ -77,8 +76,6 @@ public class ExpensesFragment extends Fragment {
                     expenses.add(new Operation(id,category,amount,check_id,check,date));
                     adapter = new ExpenseAdapter(expenses,getActivity());
                     rvExpenses.setAdapter(adapter);
-                    rvExpenses.setLayoutManager(new LinearLayoutManager(getActivity()));
-                    rvExpenses.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
                 }
             }
             catch (JSONException ex)

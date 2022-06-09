@@ -133,8 +133,6 @@ public class AddActivity extends AppCompatActivity {
                 client.update_check_income(sum,checkid);
                 String data = client.add_income(sum, date, checkid, categoryid);
                 if (!Objects.equals(data, "false")) {
-                    Intent intent = new Intent(AddActivity.this, IncomeFragment.class);
-                    setResult(RESULT_OK, intent);
                     finish();
                 }
                 else {
@@ -147,8 +145,6 @@ public class AddActivity extends AppCompatActivity {
                 client.update_check_expense(sum,checkid);
                 String data = client.add_expense(sum, date, checkid, categoryid);
                 if (!Objects.equals(data, "false")) {
-                    Intent intent = new Intent(AddActivity.this, ExpensesFragment.class);
-                    setResult(RESULT_OK, intent);
                     finish();
                 }
                 else {
