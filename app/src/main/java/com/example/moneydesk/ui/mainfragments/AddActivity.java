@@ -36,11 +36,9 @@ public class AddActivity extends AppCompatActivity {
     ArrayList<Category> categories;
     ArrayList<Check> checks;
     Toast msg;
-    double sum;
     int type;
     int categoryid;
     int checkid;
-    String date;
     int mYear, mMonth, mDay;
 
     @Override
@@ -117,38 +115,33 @@ public class AddActivity extends AppCompatActivity {
     }
 
     public void onAddClick(View v) {
-        if (textSum.getText().length() == 0)
-        {
-            msg.setText("Введите сумму!");
-            msg.show();
-        }
-        else{
-            sum = Double.parseDouble(textSum.getText().toString());
+        double sum;
+        String date;
+        if (mYear != 0 && mMonth != 0 && mDay != 0 && textSum.getText().length() != 0) {
             date = mYear + "-" + mMonth + "-" + mDay;
-            if (type == 1) {
-                Client client = new Client();
-                client.update_check_income(sum,checkid);
-                String data = client.add_income(sum, date, checkid, categoryid);
-                if (!Objects.equals(data, "false")) {
-                    finish();
+            sum = Double.parseDouble(textSum.getText().toString());
+            if (sum > 0)
+            {
+                if (type == 1) {
+                    Client client = new Client();
+                    client.update_check_income(sum,checkid);
+                    client.add_income(sum, date, checkid, categoryid);
                 }
-                else {
-                    msg.setText("Не удалось добавить расход");
-                    msg.show();
+                else if (type == 2) {
+                    Client client = new Client();
+                    client.update_check_expense(sum,checkid);
+                    client.add_expense(sum, date, checkid, categoryid);
                 }
+                finish();
             }
-            else if (type == 2) {
-                Client client = new Client();
-                client.update_check_expense(sum,checkid);
-                String data = client.add_expense(sum, date, checkid, categoryid);
-                if (!Objects.equals(data, "false")) {
-                    finish();
-                }
-                else {
-                    msg.setText("Не удалось добавить доход");
-                    msg.show();
-                }
+            else {
+                msg.setText("Пожалуйста не вводите отрицательную сумму или ноль!");
+                msg.show();
             }
+        }
+        else {
+            msg.setText("Проверьте ввели ли вы сумму и дату!");
+            msg.show();
         }
     }
 

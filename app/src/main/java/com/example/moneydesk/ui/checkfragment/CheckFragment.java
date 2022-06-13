@@ -62,9 +62,9 @@ public class CheckFragment extends Fragment {
                         Double amount = Double.valueOf(textAmount.getText().toString());
                         Client client = new Client();
                         String data = client.add_check(name,Param.id_user,amount);
-                        ListChecks();
-                        if (!Objects.equals(data, "false")) {
+                        if (!Objects.equals(data, "false") && !Objects.equals(data, null)) {
                             msg.setText("Счёт успешно добавлен!");
+                            ListChecks();
                         }
                         else {
                             msg.setText("Не удалось добавить счёт!");

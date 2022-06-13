@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -41,13 +40,11 @@ public class PieChartFragment extends Fragment {
     private PieChart pieChart;
     private HorizontalBarChart hbarChart;
     private Spinner spinner;
-    Toast msg;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pie, container, false);
-        msg = Toast.makeText(getActivity(),"",Toast.LENGTH_SHORT);
         pieChart = view.findViewById(R.id.chart_pie);
         hbarChart = view.findViewById(R.id.chart_category);
         spinner = view.findViewById(R.id.spinnerDate);
@@ -67,6 +64,8 @@ public class PieChartFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String item = (String)parent.getItemAtPosition(position);
+                pieChart.clear();
+                hbarChart.clear();
                 if (item == "Месяц") {
                     loadChartDataMonth();
                 }
@@ -85,7 +84,6 @@ public class PieChartFragment extends Fragment {
 
     private void loadChartView() {
         pieChart.setDrawCenterText(true);
-        pieChart.setCenterText("Расходы");
         pieChart.setNoDataText("Нет трат");
         pieChart.setCenterTextSize(16f);
         pieChart.setDrawHoleEnabled(true); // Рисовать ли круг в середине круговой диаграммы
@@ -100,15 +98,39 @@ public class PieChartFragment extends Fragment {
         hbarChart.getAxisLeft().setEnabled(false);
         hbarChart.getAxisRight().setEnabled(false);
         hbarChart.animateXY(2000, 2000);
+        hbarChart.setTouchEnabled(false);
+    }
+
+    public void setAxisLabels(ArrayList<String> values){
         XAxis xAxis = hbarChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setTextSize(12f);
-        xAxis.setDrawAxisLine(false);
-        xAxis.setDrawGridLines(false);
+        if (values.size() == 0)
+            pieChart.setCenterText("Нет расходов за период");
+        else
+            pieChart.setCenterText("Расходы");
+
+        if (values.size() <= 1)
+            xAxis.setEnabled(false);
+        else {
+            xAxis.setEnabled(true);
+            xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+            xAxis.setTextSize(12f);
+            xAxis.setDrawAxisLine(false);
+            xAxis.setDrawGridLines(false);
+            xAxis.setLabelCount(values.size());
+            xAxis.setValueFormatter(new ValueFormatter() {
+                @Override
+                public String getFormattedValue(float value) {
+                    if (((int) value) >= values.size())
+                        return values.get(values.size()-1);
+                    else
+                        return values.get((int) value);
+                }
+            });
+        }
     }
 
     private void loadChartDataMonth() {
-        ArrayList<String> values =new ArrayList<>();
+        ArrayList<String> values = new ArrayList<>();
         ArrayList<PieEntry> list = new ArrayList<>();
         ArrayList<BarEntry> barlist = new ArrayList<>();
         Client client = new Client();
@@ -130,7 +152,7 @@ public class PieChartFragment extends Fragment {
             }
         }
         ArrayList<Integer> colors = new ArrayList<>();
-        for (int color : ColorTemplate.JOYFUL_COLORS) {
+        for (int color : ColorTemplate.COLORFUL_COLORS) {
             colors.add(color);
         }
         PieDataSet dataSet = new PieDataSet(list,"Категории");
@@ -142,18 +164,7 @@ public class PieChartFragment extends Fragment {
         piedata.setValueTextColor(Color.WHITE);
         pieChart.setData(piedata);
         pieChart.invalidate();
-        XAxis xAxis = hbarChart.getXAxis();
-        if (values.size() <= 1)
-            hbarChart.getXAxis().setEnabled(false);
-        else {
-            xAxis.setLabelCount(values.size());
-            xAxis.setValueFormatter(new ValueFormatter() {
-                @Override
-                public String getFormattedValue(float value) {
-                    return values.get((int) value);
-                }
-            });
-        }
+        setAxisLabels(values);
         BarDataSet barDataSet = new BarDataSet(barlist,"Категории");
         barDataSet.setColors(colors);
         BarData bardata = new BarData(barDataSet);
@@ -163,7 +174,7 @@ public class PieChartFragment extends Fragment {
     }
 
     private void loadChartDataWeek() {
-        ArrayList<String> values =new ArrayList<>();
+        ArrayList<String> values = new ArrayList<>();
         ArrayList<PieEntry> list = new ArrayList<>();
         ArrayList<BarEntry> barlist = new ArrayList<>();
         Client client = new Client();
@@ -185,7 +196,7 @@ public class PieChartFragment extends Fragment {
             }
         }
         ArrayList<Integer> colors = new ArrayList<>();
-        for (int color : ColorTemplate.JOYFUL_COLORS) {
+        for (int color : ColorTemplate.COLORFUL_COLORS) {
             colors.add(color);
         }
         PieDataSet dataSet = new PieDataSet(list,"Категории");
@@ -197,18 +208,7 @@ public class PieChartFragment extends Fragment {
         piedata.setValueTextColor(Color.WHITE);
         pieChart.setData(piedata);
         pieChart.invalidate();
-        XAxis xAxis = hbarChart.getXAxis();
-        if (values.size() <= 1)
-            hbarChart.getXAxis().setEnabled(false);
-        else {
-            xAxis.setLabelCount(values.size());
-            xAxis.setValueFormatter(new ValueFormatter() {
-                @Override
-                public String getFormattedValue(float value) {
-                    return values.get((int) value);
-                }
-            });
-        }
+        setAxisLabels(values);
         BarDataSet barDataSet = new BarDataSet(barlist,"Категории");
         barDataSet.setColors(colors);
         BarData bardata = new BarData(barDataSet);
@@ -218,7 +218,7 @@ public class PieChartFragment extends Fragment {
     }
 
     private void loadChartDataToday() {
-        ArrayList<String> values =new ArrayList<>();
+        ArrayList<String> values = new ArrayList<>();
         ArrayList<PieEntry> list = new ArrayList<>();
         ArrayList<BarEntry> barlist = new ArrayList<>();
         Client client = new Client();
@@ -240,7 +240,7 @@ public class PieChartFragment extends Fragment {
             }
         }
         ArrayList<Integer> colors = new ArrayList<>();
-        for (int color : ColorTemplate.JOYFUL_COLORS) {
+        for (int color : ColorTemplate.COLORFUL_COLORS) {
             colors.add(color);
         }
         PieDataSet dataSet = new PieDataSet(list,"Категории");
@@ -252,18 +252,7 @@ public class PieChartFragment extends Fragment {
         piedata.setValueTextColor(Color.WHITE);
         pieChart.setData(piedata);
         pieChart.invalidate();
-        XAxis xAxis = hbarChart.getXAxis();
-        if (values.size() <= 1)
-            hbarChart.getXAxis().setEnabled(false);
-        else {
-            xAxis.setLabelCount(values.size());
-            xAxis.setValueFormatter(new ValueFormatter() {
-                @Override
-                public String getFormattedValue(float value) {
-                    return values.get((int) value);
-                }
-            });
-        }
+        setAxisLabels(values);
         BarDataSet barDataSet = new BarDataSet(barlist,"Категории");
         barDataSet.setColors(colors);
         BarData bardata = new BarData(barDataSet);
