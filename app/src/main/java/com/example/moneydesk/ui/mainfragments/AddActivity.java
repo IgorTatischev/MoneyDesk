@@ -124,15 +124,32 @@ public class AddActivity extends AppCompatActivity {
             {
                 if (type == 1) {
                     Client client = new Client();
-                    client.update_check_income(sum,checkid);
-                    client.add_income(sum, date, checkid, categoryid);
+                    String data = client.update_check_income(sum,checkid);
+                    if (Objects.equals(data, "true"))
+                    {
+                        client.add_income(sum, date, checkid, categoryid);
+                        finish();
+                    }
+                    else
+                    {
+                        msg.setText("Недостаточно средств на счёте!");
+                        msg.show();
+                    }
                 }
                 else if (type == 2) {
                     Client client = new Client();
-                    client.update_check_expense(sum,checkid);
-                    client.add_expense(sum, date, checkid, categoryid);
+                    String data = client.update_check_expense(sum,checkid);
+                    if (Objects.equals(data, "true"))
+                    {
+                        client.add_expense(sum, date, checkid, categoryid);
+                        finish();
+                    }
+                    else
+                    {
+                        msg.setText("Не удалось долбавить доход!");
+                        msg.show();
+                    }
                 }
-                finish();
             }
             else {
                 msg.setText("Пожалуйста не вводите отрицательную сумму или ноль!");
