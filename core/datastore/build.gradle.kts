@@ -48,9 +48,7 @@ dependencies {
     implementation(libs.android.appcompat)
     implementation(libs.google.material)
     implementation(libs.bundles.koin)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+
 
     implementation(libs.bundles.datastore.full)
 

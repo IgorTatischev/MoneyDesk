@@ -23,7 +23,7 @@ debug-minify = "false"
 debug-editable = "true"
 
 compile-sdk = "34"
-min-sdk = "24"
+min-sdk = "26"
 target-sdk = "34"
 
 kotlin-compiler = "1.5.8"
@@ -44,7 +44,7 @@ retrofit = "2.9.0"
 okhttp = "4.12.0"
 compose-navigation = "2.7.7"
 datastore = "1.0.0"
-koin = "3.4.5"
+koin = "3.4.0"
 orbit-compose = "6.1.0"
 orbit-viewmodel = "6.1.0"
 window = "1.2.0"
@@ -112,7 +112,6 @@ androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "
 
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
-koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 
 orbit-compose = { module = "org.orbit-mvi:orbit-compose", version.ref = "orbit-compose" }
 orbit-viewmodel = { module = "org.orbit-mvi:orbit-viewmodel", version.ref = "orbit-viewmodel" }
@@ -122,14 +121,14 @@ androidApplication = { id = "com.android.application", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 ksp-plugin = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-org-jetbrains-kotlin-serizliation = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlin-serizliation = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 
 [bundles]
 room-impl = ["androidx-room-ktx", "androidx-room-runtime"]
 orbit = ["orbit-compose", "orbit-viewmodel"]
-koin = ["koin-android", "koin-compose", "koin-core"]
+koin = ["koin-android", "koin-compose"]
 datastore-full = ["datastore", "datastore-proto"]
-retrofit-with-okhttp = ["retrofit", "retrofit-converter-gson", "okhttp", "okhttp-logging-interceptor"]
+retrofit-okhttp = ["retrofit", "retrofit-converter-gson", "okhttp", "okhttp-logging-interceptor"]
 
 
 

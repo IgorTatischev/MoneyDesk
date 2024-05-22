@@ -2,10 +2,22 @@ package com.money.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+val LightPrimary = Color(0xff315da8)
+val LightOnPrimary = Color(0xffffffff)
+val LightSecondary = Color(0xff565e71)
+val LightOnSecondary =  Color(0xffffffff)
+val LightBackground = Color(0xfffefbff)
+val LightOnBackground = Color(0xff1b1b1f)
+val LightSurface = Color(0xfffefbff)
+val LightOnSurface = Color(0xff1b1b1f)
+val LightTertiary = Color(0xff715573)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+val DarkPrimary = Color(0xffadc6ff)
+val DarkOnPrimary = Color(0xff002e69)
+val DarkSecondary = Color(0xffbfc6dc)
+val DarkOnSecondary =  Color(0xff293041)
+val DarkBackground = Color(0xff1b1b1f)
+val DarkOnBackground = Color(0xffe3e2e6)
+val DarkSurface = Color(0xff1b1b1f)
+val DarkOnSurface = Color(0xffe3e2e6)
+val DarkTertiary = Color(0xffdebcdf)
