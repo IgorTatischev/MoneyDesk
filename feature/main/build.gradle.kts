@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.kotlin.serizliation)
 }
 
 android {
@@ -51,17 +52,18 @@ android {
 dependencies {
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.lifecycle.runtime.compose)
     implementation(libs.google.material)
     implementation(libs.android.appcompat)
-    implementation(libs.androidx.navigation.compose)
+    implementation(libs.navigation.compose)
     implementation(libs.activity.compose)
+    implementation(libs.kotlinx.json)
     implementation(platform(libs.compose.bom))
     implementation(libs.ui)
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
     implementation(libs.androidx.window)
-    implementation(libs.bundles.koin)
 
     implementation(projects.core.ui)
     implementation(projects.core.common)

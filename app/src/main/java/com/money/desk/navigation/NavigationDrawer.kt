@@ -64,7 +64,6 @@ fun NavGraphBuilder.navigationDrawerHost() {
                             )
                         }
                     }
-
                 }
             }
         ) {

@@ -47,7 +47,6 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.android.appcompat)
     implementation(libs.google.material)
-    implementation(libs.bundles.koin)
 
 
     implementation(libs.bundles.datastore.full)
