@@ -17,7 +17,6 @@ dependencyResolutionManagement {
 rootProject.name = "MoneyDesk"
 include(":app")
 include(":core:common")
-include(":core:navigation")
 include(":core:ui")
 include(":core:datastore")
 include(":feature:settings")

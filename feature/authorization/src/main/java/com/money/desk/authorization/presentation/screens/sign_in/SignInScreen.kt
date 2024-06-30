@@ -1,4 +1,4 @@
-package com.money.authorization.presentation.screens.sign_in
+package com.money.desk.authorization.presentation.screens.sign_in
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

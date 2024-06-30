@@ -1,4 +1,4 @@
-package com.money.authorization.presentation.screens.forgot_screen
+package com.money.desk.authorization.presentation.screens.forgot_screen
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

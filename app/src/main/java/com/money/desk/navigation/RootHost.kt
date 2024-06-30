@@ -3,8 +3,8 @@ package com.money.desk.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.money.authorization.navigation.AUTH_GRAPH
-import com.money.authorization.navigation.authNavGraph
+import com.money.desk.authorization.navigation.AUTH_GRAPH
+import com.money.desk.authorization.navigation.authNavGraph
 
 @Composable
 fun RootHost() {

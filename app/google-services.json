@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "226131816463",
+    "project_id": "moneydesk-a60ea",
+    "storage_bucket": "moneydesk-a60ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:226131816463:android:e8a5b0a41aa339530eb37a",
+        "android_client_info": {
+          "package_name": "com.money.desk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9aevZKmv8vHKqv2vxZaflRLczl_kesUI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

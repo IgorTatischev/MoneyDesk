@@ -1,12 +1,12 @@
-package com.money.authorization.navigation
+package com.money.desk.authorization.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.money.authorization.presentation.screens.forgot_screen.ForgotPasswordScreen
-import com.money.authorization.presentation.screens.sign_in.SignInScreen
-import com.money.authorization.presentation.screens.sign_up.SignUpScreen
+import com.money.desk.authorization.presentation.screens.forgot_screen.ForgotPasswordScreen
+import com.money.desk.authorization.presentation.screens.sign_in.SignInScreen
+import com.money.desk.authorization.presentation.screens.sign_up.SignUpScreen
 
 const val AUTH_GRAPH = "authorization"
 

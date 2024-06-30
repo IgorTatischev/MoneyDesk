@@ -1,12 +1,8 @@
 package com.money.desk.app
 
 import android.app.Application
+import android.content.Context
+import dagger.hilt.android.HiltAndroidApp
 
-class MainApp : Application() {
-
-    override fun onCreate() {
-        super.onCreate()
-
-        //todo dagger
-    }
-}
+@HiltAndroidApp
+class MainApp : Application()

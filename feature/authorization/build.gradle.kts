@@ -2,6 +2,9 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.kotlin.serizliation)
+    alias(libs.plugins.ksp.plugin)
+    alias(libs.plugins.hilt.plugin)
+
 }
 
 android {
@@ -9,7 +12,7 @@ android {
     compileSdk = libs.versions.compile.sdk.get().toInt()
 
     defaultConfig {
-        minSdk = 24
+        minSdk = libs.versions.min.sdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -53,11 +56,15 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.lifecycle.runtime.compose)
+    implementation(libs.dagger.hilt)
+    ksp(libs.dagger.hilt.compiler)
     implementation(libs.google.material)
     implementation(libs.android.appcompat)
     implementation(libs.navigation.compose)
     implementation(libs.activity.compose)
     implementation(libs.kotlinx.json)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
     implementation(platform(libs.compose.bom))
     implementation(libs.ui)
     implementation(libs.ui.graphics)

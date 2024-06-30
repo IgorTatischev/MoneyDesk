@@ -15,6 +15,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
@@ -46,7 +47,7 @@ fun NavGraphBuilder.navigationDrawerHost() {
                         DrawerMenu.entries.forEachIndexed { index, item ->
                             NavigationDrawerItem(
                                 modifier = Modifier.padding(horizontal = 10.dp, vertical = 5.dp),
-                                label = { Text(text = item.title) },
+                                label = { Text(text = stringResource(id = item.title)) },
                                 selected = index == selectedItem,
                                 icon = {
                                     Icon(
