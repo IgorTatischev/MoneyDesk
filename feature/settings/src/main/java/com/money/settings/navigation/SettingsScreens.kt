@@ -1,7 +1,9 @@
 package com.money.settings.navigation
 
-internal sealed class SettingsScreens(
-    val route: String,
-) {
-    data object SettingsScreen: SettingsScreens(route = "settings_screen")
+import kotlinx.serialization.Serializable
+
+@Serializable
+internal sealed class SettingsScreens {
+    @Serializable
+    data object SettingsScreen: SettingsScreens()
 }

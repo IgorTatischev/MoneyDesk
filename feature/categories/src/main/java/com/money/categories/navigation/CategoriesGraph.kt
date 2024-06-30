@@ -6,20 +6,21 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.money.categories.presentation.screens.categories_screen.CategoryScreen
+import kotlinx.serialization.Serializable
 
-const val CATEGORIES_GRAPH = "categories"
+@Serializable
+object CategoriesGraph
 
 fun NavController.navigateToCategoriesGraph() {
-    navigate(CATEGORIES_GRAPH)
+    navigate(CategoriesGraph)
 }
 
 fun NavGraphBuilder.categoriesGraph(navController: NavController, drawerState: DrawerState) {
 
-    navigation(
-        startDestination = CategoriesScreens.CategoryScreen.route,
-        route = CATEGORIES_GRAPH
+    navigation<CategoriesGraph>(
+        startDestination = CategoriesScreens.CategoryScreen,
     ) {
-        composable(route = CategoriesScreens.CategoryScreen.route) {
+        composable<CategoriesScreens.CategoryScreen> {
             CategoryScreen(drawerState = drawerState)
         }
     }

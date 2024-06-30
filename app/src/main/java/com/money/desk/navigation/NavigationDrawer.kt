@@ -22,18 +22,19 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.money.categories.navigation.categoriesGraph
-import com.money.main.navigation.MAIN_GRAPH
+import com.money.main.navigation.MainGraph
 import com.money.main.navigation.mainGraph
 import com.money.settings.navigation.settingsGraph
 import com.money.wallet.navigation.walletGraph
 import kotlinx.coroutines.launch
+import kotlinx.serialization.Serializable
 
-const val NAVIGATION_DRAWER_ROUTE = "drawer"
+@Serializable
+object DrawerRoute
 
 fun NavGraphBuilder.navigationDrawerHost() {
 
-    composable(route = NAVIGATION_DRAWER_ROUTE) {
-
+    composable<DrawerRoute> {
         val navController = rememberNavController()
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         val scope = rememberCoroutineScope()
@@ -70,7 +71,7 @@ fun NavGraphBuilder.navigationDrawerHost() {
         ) {
             NavHost(
                 navController = navController,
-                startDestination = MAIN_GRAPH,
+                startDestination = MainGraph,
             ) {
                 mainGraph(navController, drawerState)
                 categoriesGraph(navController, drawerState)

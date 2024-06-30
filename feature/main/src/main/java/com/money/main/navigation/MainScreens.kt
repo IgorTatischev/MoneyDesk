@@ -1,7 +1,9 @@
 package com.money.main.navigation
 
-internal sealed class MainScreens(
-    val route: String,
-) {
-    data object MainScreen: MainScreens(route = "main_screen")
+import kotlinx.serialization.Serializable
+
+@Serializable
+internal sealed class MainScreens {
+    @Serializable
+    data object MainScreen: MainScreens()
 }

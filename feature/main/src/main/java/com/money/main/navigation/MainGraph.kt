@@ -6,20 +6,21 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.money.main.presentation.screens.main_screen.MainScreen
+import kotlinx.serialization.Serializable
 
-const val MAIN_GRAPH = "main"
+@Serializable
+object MainGraph
 
 fun NavController.navigateToMainGraph() {
-    navigate(MAIN_GRAPH)
+    navigate(MainGraph)
 }
 
 fun NavGraphBuilder.mainGraph(navController: NavController, drawerState: DrawerState) {
 
-    navigation(
-        startDestination = MainScreens.MainScreen.route,
-        route = MAIN_GRAPH
+    navigation<MainGraph>(
+        startDestination = MainScreens.MainScreen,
     ) {
-        composable(route = MainScreens.MainScreen.route) {
+        composable<MainScreens.MainScreen> {
             MainScreen(drawerState = drawerState)
         }
     }

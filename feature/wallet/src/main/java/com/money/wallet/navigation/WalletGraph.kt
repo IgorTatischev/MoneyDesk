@@ -6,20 +6,21 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.money.wallet.presentation.screens.wallet_screen.WalletScreen
+import kotlinx.serialization.Serializable
 
-const val WALLET_GRAPH = "wallet"
+@Serializable
+object WalletGraph
 
 fun NavController.navigateToWalletGraph() {
-    navigate(WALLET_GRAPH)
+    navigate(route = WalletGraph)
 }
 
 fun NavGraphBuilder.walletGraph(navController: NavController, drawerState: DrawerState) {
 
-    navigation(
-        startDestination = WalletScreens.WalletScreen.route,
-        route = WALLET_GRAPH
+    navigation<WalletGraph>(
+        startDestination = WalletScreens.WalletScreen,
     ) {
-        composable(route = WalletScreens.WalletScreen.route) {
+        composable<WalletScreens.WalletScreen> {
             WalletScreen(drawerState = drawerState)
         }
     }

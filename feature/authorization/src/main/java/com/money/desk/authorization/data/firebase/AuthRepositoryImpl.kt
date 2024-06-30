@@ -3,9 +3,9 @@ package com.money.desk.authorization.data.firebase
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthCredential
+import com.money.common.Resource
 import com.money.desk.authorization.domain.model.UserModel
 import com.money.desk.authorization.domain.repository.AuthRepository
-import com.money.common.Resource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

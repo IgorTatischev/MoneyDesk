@@ -6,20 +6,21 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.money.settings.presentation.screens.settings_screen.SettingsScreen
+import kotlinx.serialization.Serializable
 
-const val SETTINGS_GRAPH = "settings"
+@Serializable
+object SettingsGraph
 
 fun NavController.navigateToSettingsGraph() {
-    navigate(SETTINGS_GRAPH)
+    navigate(route = SettingsGraph)
 }
 
 fun NavGraphBuilder.settingsGraph(navController: NavController, drawerState: DrawerState) {
 
-    navigation(
-        startDestination = SettingsScreens.SettingsScreen.route,
-        route = SETTINGS_GRAPH
+    navigation<SettingsGraph>(
+        startDestination = SettingsScreens.SettingsScreen
     ) {
-        composable(route = SettingsScreens.SettingsScreen.route) {
+        composable<SettingsScreens.SettingsScreen> {
             SettingsScreen(drawerState = drawerState)
         }
     }

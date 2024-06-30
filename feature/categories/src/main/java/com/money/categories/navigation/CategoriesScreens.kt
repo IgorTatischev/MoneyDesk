@@ -1,7 +1,9 @@
 package com.money.categories.navigation
 
-internal sealed class CategoriesScreens(
-    val route: String,
-) {
-    data object CategoryScreen: CategoriesScreens(route = "category_screen")
+import kotlinx.serialization.Serializable
+
+@Serializable
+internal sealed class CategoriesScreens {
+    @Serializable
+    data object CategoryScreen: CategoriesScreens()
 }

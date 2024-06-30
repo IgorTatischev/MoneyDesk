@@ -2,8 +2,8 @@ package com.money.desk.authorization.domain.repository
 
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.GoogleAuthCredential
-import com.money.desk.authorization.domain.model.UserModel
 import com.money.common.Resource
+import com.money.desk.authorization.domain.model.UserModel
 import kotlinx.coroutines.flow.Flow
 
 interface AuthRepository {

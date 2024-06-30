@@ -1,7 +1,13 @@
 package com.money.desk.authorization.navigation
 
-internal sealed class AuthScreens(val route: String) {
-    data object SignIn: AuthScreens(route = "sign_in_screen")
-    data object SignUp: AuthScreens(route = "sign_up_screen")
-    data object Forgot: AuthScreens(route = "forgot_screen")
+import kotlinx.serialization.Serializable
+
+@Serializable
+internal sealed class AuthScreens {
+    @Serializable
+    data object SignIn: AuthScreens()
+    @Serializable
+    data object SignUp: AuthScreens()
+    @Serializable
+    data object Forgot: AuthScreens()
 }

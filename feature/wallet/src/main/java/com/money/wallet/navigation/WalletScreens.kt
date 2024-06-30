@@ -1,7 +1,9 @@
 package com.money.wallet.navigation
 
-internal sealed class WalletScreens(
-    val route: String,
-) {
-    data object WalletScreen: WalletScreens(route = "wallet_screen")
+import kotlinx.serialization.Serializable
+
+@Serializable
+internal sealed class WalletScreens {
+    @Serializable
+    data object WalletScreen: WalletScreens()
 }

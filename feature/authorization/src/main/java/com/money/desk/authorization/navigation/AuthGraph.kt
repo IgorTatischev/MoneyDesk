@@ -7,35 +7,36 @@ import androidx.navigation.navigation
 import com.money.desk.authorization.presentation.screens.forgot_screen.ForgotPasswordScreen
 import com.money.desk.authorization.presentation.screens.sign_in.SignInScreen
 import com.money.desk.authorization.presentation.screens.sign_up.SignUpScreen
+import kotlinx.serialization.Serializable
 
-const val AUTH_GRAPH = "authorization"
+@Serializable
+object AuthGraph
 
 fun NavController.navigateToAuthGraph() {
-    navigate(AUTH_GRAPH)
+    navigate(AuthGraph)
 }
 
 fun NavGraphBuilder.authNavGraph(navController: NavController) {
-    navigation(
-        route = AUTH_GRAPH,
-        startDestination = AuthScreens.SignIn.route
+    navigation<AuthGraph>(
+        startDestination = AuthScreens.SignIn
     ){
-        composable(route = AuthScreens.SignIn.route) {
+        composable<AuthScreens.SignIn> {
             SignInScreen(
                 onSignInClick = {
                     //navController.navigateUp()
                 },
                 onSignUpClick = {
-                    navController.navigate(AuthScreens.SignUp.route)
+                    navController.navigate(AuthScreens.SignUp)
                 },
                 onForgotClick = {
-                    navController.navigate(AuthScreens.Forgot.route)
+                    navController.navigate(AuthScreens.Forgot)
                 }
             )
         }
-        composable(route = AuthScreens.SignUp.route) {
+        composable<AuthScreens.SignUp> {
             SignUpScreen()
         }
-        composable(route = AuthScreens.Forgot.route) {
+        composable<AuthScreens.Forgot> {
             ForgotPasswordScreen()
         }
     }
