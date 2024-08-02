@@ -1,18 +1,16 @@
 package com.money.desk.authorization.domain.repository
 
+import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.GoogleAuthCredential
-import com.money.common.Resource
 import com.money.desk.authorization.domain.model.UserModel
-import kotlinx.coroutines.flow.Flow
 
-interface AuthRepository {
+internal interface AuthRepository {
 
-    fun signUp(userModel: UserModel): Flow<Resource<AuthResult>>
+    suspend fun signUp(user: UserModel): AuthResult
 
-    fun singIn(email: String, password: String): Flow<Resource<AuthResult>>
+    suspend fun singIn(email: String, password: String): AuthResult
 
-    fun googleSignIn(credential: GoogleAuthCredential): Flow<Resource<AuthResult>>
+    suspend fun googleSignIn(credential: AuthCredential): AuthResult
 
-    fun signOut()
+    //todo reset password fun
 }

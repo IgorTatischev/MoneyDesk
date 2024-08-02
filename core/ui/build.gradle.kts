@@ -66,4 +66,5 @@ dependencies {
     debugImplementation(libs.ui.test.manifest)
     implementation(libs.android.appcompat)
     implementation(libs.androidx.window)
+    implementation(libs.fonts.compose)
 }

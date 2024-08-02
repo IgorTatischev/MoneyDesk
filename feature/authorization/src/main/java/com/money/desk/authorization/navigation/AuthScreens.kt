@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 internal sealed class AuthScreens {
     @Serializable
-    data object SignIn: AuthScreens()
+    data class SignIn(val login: String = ""): AuthScreens()
     @Serializable
     data object SignUp: AuthScreens()
     @Serializable

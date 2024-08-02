@@ -17,6 +17,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -32,7 +33,11 @@ import kotlinx.serialization.Serializable
 @Serializable
 object DrawerRoute
 
-fun NavGraphBuilder.navigationDrawerHost() {
+fun NavController.navigateToDrawer() {
+    navigate(route = DrawerRoute)
+}
+
+fun NavGraphBuilder.navigationDrawerHost(navigateToAuth: () -> Unit) {
 
     composable<DrawerRoute> {
         val navController = rememberNavController()

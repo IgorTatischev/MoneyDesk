@@ -4,6 +4,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import androidx.navigation.toRoute
 import com.money.desk.authorization.presentation.screens.forgot_screen.ForgotPasswordScreen
 import com.money.desk.authorization.presentation.screens.sign_in.SignInScreen
 import com.money.desk.authorization.presentation.screens.sign_up.SignUpScreen
@@ -16,25 +17,36 @@ fun NavController.navigateToAuthGraph() {
     navigate(AuthGraph)
 }
 
-fun NavGraphBuilder.authNavGraph(navController: NavController) {
+fun NavGraphBuilder.authNavGraph(navController: NavController, navigateToMain: () -> Unit) {
     navigation<AuthGraph>(
-        startDestination = AuthScreens.SignIn
-    ){
+        startDestination = AuthScreens.SignIn()
+    ) {
         composable<AuthScreens.SignIn> {
+
+            val loginFromRegister = it.toRoute<AuthScreens.SignIn>().login
+
             SignInScreen(
-                onSignInClick = {
-                    //navController.navigateUp()
-                },
-                onSignUpClick = {
+                navigateToMain = navigateToMain,
+                navigateToSignUp = {
                     navController.navigate(AuthScreens.SignUp)
                 },
-                onForgotClick = {
+                navigateForgot = {
                     navController.navigate(AuthScreens.Forgot)
-                }
+                },
+                loginFromRegister = loginFromRegister
             )
         }
         composable<AuthScreens.SignUp> {
-            SignUpScreen()
+            SignUpScreen(
+                navigateBack = { navController.popBackStack() },
+                navigateToSignIn = {
+                    navController.navigate(AuthScreens.SignIn(it)) {
+                        popUpTo<AuthScreens.SignIn> {
+                            inclusive = true
+                        }
+                    }
+                }
+            )
         }
         composable<AuthScreens.Forgot> {
             ForgotPasswordScreen()

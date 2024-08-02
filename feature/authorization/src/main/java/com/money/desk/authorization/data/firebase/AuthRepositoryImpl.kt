@@ -1,32 +1,37 @@
 package com.money.desk.authorization.data.firebase
 
+import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthCredential
-import com.money.common.Resource
+import com.google.firebase.firestore.FirebaseFirestore
+import com.money.common.Constants.USERS
 import com.money.desk.authorization.domain.model.UserModel
 import com.money.desk.authorization.domain.repository.AuthRepository
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
-class AuthRepositoryImpl @Inject constructor(
+internal class AuthRepositoryImpl @Inject constructor(
     private val firebaseAuth: FirebaseAuth,
+    private val firebaseFirestore: FirebaseFirestore,
 ) : AuthRepository {
 
-    override fun signUp(userModel: UserModel): Flow<Resource<AuthResult>> {
-        TODO("Not yet implemented")
+    override suspend fun signUp(user: UserModel): AuthResult {
+        return firebaseAuth.createUserWithEmailAndPassword(user.login, user.password)
+            .addOnSuccessListener {
+                val firebaseUser = firebaseAuth.currentUser
+                if (firebaseUser != null) {
+                    user.userId = firebaseUser.uid
+                    firebaseFirestore
+                        .collection(USERS)
+                        .document(firebaseUser.uid)
+                        .set(user)
+                }
+            }.await()
     }
 
-    override fun singIn(email: String, password: String): Flow<Resource<AuthResult>> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun singIn(email: String, password: String): AuthResult =
+        firebaseAuth.signInWithEmailAndPassword(email, password).await()
 
-    override fun googleSignIn(credential: GoogleAuthCredential): Flow<Resource<AuthResult>> {
-        TODO("Not yet implemented")
-    }
-
-    override fun signOut() {
-        TODO("Not yet implemented")
-    }
-
+    override suspend fun googleSignIn(credential: AuthCredential): AuthResult =
+        firebaseAuth.signInWithCredential(credential).await()
 }

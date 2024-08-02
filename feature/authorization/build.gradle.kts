@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.kotlin.serizliation)
     alias(libs.plugins.ksp.plugin)
     alias(libs.plugins.hilt.plugin)
-
 }
 
 android {
@@ -57,6 +56,7 @@ dependencies {
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.lifecycle.runtime.compose)
     implementation(libs.dagger.hilt)
+    implementation(libs.dagger.hilt.navigation)
     ksp(libs.dagger.hilt.compiler)
     implementation(libs.google.material)
     implementation(libs.android.appcompat)
@@ -64,13 +64,16 @@ dependencies {
     implementation(libs.activity.compose)
     implementation(libs.kotlinx.json)
     implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.firestore)
     implementation(libs.firebase.auth)
+    implementation(libs.play.services.auth)
     implementation(platform(libs.compose.bom))
     implementation(libs.ui)
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
     implementation(libs.androidx.window)
+    implementation(libs.extended.icons)
 
     implementation(projects.core.ui)
     implementation(projects.core.common)
