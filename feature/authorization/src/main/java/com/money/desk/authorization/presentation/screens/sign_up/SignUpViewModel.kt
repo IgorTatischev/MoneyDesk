@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
+import java.util.regex.Pattern
 import javax.inject.Inject
 
 @HiltViewModel
@@ -66,7 +67,8 @@ internal class SignUpViewModel @Inject constructor(
     }
 
     private fun validate(): Boolean = with(signUpState.value) {
-        //todo mail format validation
-        return loginText.isNotBlank() && passwordText.isNotBlank() && nameText.isNotBlank()
+        val emailPattern = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"
+        val isEmail = Pattern.compile(emailPattern).matcher(loginText).matches()
+        return isEmail && loginText.isNotBlank() && passwordText.isNotBlank() && nameText.isNotBlank()
     }
 }

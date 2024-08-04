@@ -41,6 +41,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -53,6 +54,7 @@ import com.money.desk.authorization.presentation.screens.sign_in.SignInViewModel
 import com.money.ui.components.BaseTextField
 import com.money.ui.components.MainButton
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.serialization.json.JsonNull.content
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -62,6 +64,7 @@ internal fun SignUpScreen(
     viewModel: SignUpViewModel = hiltViewModel(),
 ) {
 
+    val context = LocalContext.current
     val snackBarHostState = remember { SnackbarHostState() }
     val state by viewModel.signUpState.collectAsStateWithLifecycle()
 
@@ -73,13 +76,16 @@ internal fun SignUpScreen(
                 }
 
                 is UiEffect.ShowSnackbar -> {
-                    //todo show
-                    //snackBarHostState.showSnackbar()
+                    snackBarHostState.showSnackbar(
+                        if (event.resId != null)
+                            context.getString(event.resId)
+                        else event.message.toString()
+                    )
                 }
             }
         }
     }
-    //todo move scaffold to core ui
+
     Scaffold(
         topBar = {
             TopAppBar(title = { }, navigationIcon = {

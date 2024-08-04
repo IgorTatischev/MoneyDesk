@@ -25,6 +25,6 @@ enum class DrawerMenu(
 ) {
     MAIN(Icons.Outlined.DonutLarge, Icons.Filled.DonutLarge, R.string.title_main, MainGraph),
     CATEGORIES(Icons.Outlined.Category, Icons.Filled.Category, R.string.title_categories, CategoriesGraph),
+    WALLET(Icons.Outlined.Savings, Icons.Filled.Savings, R.string.title_wallet, WalletGraph),
     SETTINGS(Icons.Outlined.Settings, Icons.Filled.Settings, R.string.title_settings, SettingsGraph),
-    WALLET(Icons.Outlined.Savings, Icons.Filled.Savings, R.string.title_wallet, WalletGraph)
 }

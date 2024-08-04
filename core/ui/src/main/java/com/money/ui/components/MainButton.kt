@@ -41,6 +41,8 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.money.ui.theme.MoneyDeskTheme
+import com.money.ui.theme.onBackgroundLightMediumContrast
+import com.money.ui.theme.onTertiaryLightMediumContrast
 import com.money.ui.util.ButtonsDefaults
 import com.money.ui.util.dpToPx
 import kotlinx.coroutines.launch
@@ -88,8 +90,7 @@ fun MainButton(
                 .drawBehind {
                     drawRoundRect(
                         cornerRadius = CornerRadius(x = cornerRadiusPx, y = cornerRadiusPx),
-                        //todo color
-                        color = if (enabled) Color.Black else Color.Gray,
+                        color = if (enabled) onBackgroundLightMediumContrast else Color.Gray,
                     )
                 }
                 .graphicsLayer {
@@ -101,8 +102,8 @@ fun MainButton(
             onClick = onClick,
             contentPadding = contentPadding,
             colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.primary,
-                contentColor = MaterialTheme.colorScheme.onPrimary,
+                containerColor = MaterialTheme.colorScheme.tertiary,
+                contentColor = MaterialTheme.colorScheme.onTertiary,
                 disabledContainerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
                 disabledContentColor = MaterialTheme.colorScheme.surfaceContainer,
             ),
