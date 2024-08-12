@@ -7,14 +7,26 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
+import androidx.credentials.ClearCredentialStateRequest
+import androidx.credentials.CredentialManager
 import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
 import com.money.desk.navigation.RootHost
 import com.money.ui.theme.MoneyDeskTheme
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var auth: FirebaseAuth
+    private val credentialManager = CredentialManager.create(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,9 +35,18 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             val context = LocalContext.current
+            val scope = rememberCoroutineScope()
 
             MoneyDeskTheme {
-                RootHost()
+                RootHost(
+                    isLogin = auth.currentUser != null,
+                    onSignOut = {
+                        scope.launch {
+                            credentialManager.clearCredentialState(ClearCredentialStateRequest())
+                        }
+                        auth.signOut()
+                    }
+                )
             }
 
             DisposableEffect(key1 = Unit) {

@@ -8,16 +8,18 @@ import com.money.desk.authorization.navigation.authNavGraph
 import com.money.desk.authorization.navigation.navigateToAuthGraph
 
 @Composable
-fun RootHost() {
+fun RootHost(isLogin: Boolean, onSignOut: () -> Unit) {
 
     val navController = rememberNavController()
 
     NavHost(
         navController = navController,
-        //startDestination = DrawerRoute //todo if not login go to auth
-        startDestination = AuthGraph
+        startDestination = if (isLogin) DrawerRoute else AuthGraph
     ) {
-        navigationDrawerHost(navigateToAuth = { navController.navigateToAuthGraph() })
+        navigationDrawerHost(signOut = {
+            onSignOut()
+            navController.navigateToAuthGraph()
+        })
         authNavGraph(
             navController = navController,
             navigateToMain = { navController.navigateToDrawer() }

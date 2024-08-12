@@ -14,7 +14,12 @@ import kotlinx.serialization.Serializable
 object AuthGraph
 
 fun NavController.navigateToAuthGraph() {
-    navigate(AuthGraph)
+    navigate(AuthGraph) {
+        popUpTo(0) {
+            inclusive = true
+        }
+        launchSingleTop = true
+    }
 }
 
 fun NavGraphBuilder.authNavGraph(navController: NavController, navigateToMain: () -> Unit) {

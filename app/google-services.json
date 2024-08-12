@@ -12,7 +12,20 @@
           "package_name": "com.money.desk"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "226131816463-t4h314vmor6h22obf5b1a15kri4p57tt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.money.desk",
+            "certificate_hash": "5a387e5ad9293f32218e91e0119a757004fc3aba"
+          }
+        },
+        {
+          "client_id": "226131816463-qibbn3poiln2ubm3mes1sog8d6lq7hju.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyA9aevZKmv8vHKqv2vxZaflRLczl_kesUI"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "226131816463-qibbn3poiln2ubm3mes1sog8d6lq7hju.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
