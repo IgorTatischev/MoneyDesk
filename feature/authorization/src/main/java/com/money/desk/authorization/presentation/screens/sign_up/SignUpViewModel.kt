@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.money.authorization.R
 import com.money.common.Resource
 import com.money.desk.authorization.domain.model.UserModel
-import com.money.desk.authorization.domain.repository.AuthRepository
 import com.money.desk.authorization.domain.use_cases.SignUpUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow

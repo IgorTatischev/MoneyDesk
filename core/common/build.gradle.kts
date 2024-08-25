@@ -48,11 +48,10 @@ android {
 dependencies {
 
     implementation(libs.core.ktx)
-    implementation(libs.android.appcompat)
+    implementation(libs.androidx.appcompat)
     implementation(libs.google.material)
+    implementation(libs.androidx.navigation.runtime.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    implementation(libs.android.appcompat)
-
 }

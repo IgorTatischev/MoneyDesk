@@ -27,6 +27,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.money.categories.navigation.categoriesGraph
+import com.money.common.safeNavigate
 import com.money.desk.R
 import com.money.main.navigation.MainGraph
 import com.money.main.navigation.mainGraph
@@ -38,9 +39,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 object DrawerRoute
 
-fun NavController.navigateToDrawer() {
-    navigate(route = DrawerRoute)
-}
+fun NavController.navigateToDrawer() = safeNavigate { navigate(route = DrawerRoute) }
 
 fun NavGraphBuilder.navigationDrawerHost(signOut: () -> Unit) {
 
@@ -71,7 +70,7 @@ fun NavGraphBuilder.navigationDrawerHost(signOut: () -> Unit) {
                                         drawerState.close()
                                     }
                                     selectedItem = index
-                                    navController.navigate(item.route)
+                                    navController.safeNavigate {  navController.navigate(item.route) }
                                 }
                             )
                         }

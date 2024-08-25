@@ -60,7 +60,7 @@ dependencies {
     implementation(libs.identity.googleid)
     ksp(libs.dagger.hilt.compiler)
     implementation(libs.google.material)
-    implementation(libs.android.appcompat)
+    implementation(libs.androidx.appcompat)
     implementation(libs.navigation.compose)
     implementation(libs.activity.compose)
     implementation(libs.kotlinx.json)

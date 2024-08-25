@@ -5,6 +5,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import androidx.navigation.toRoute
+import com.money.common.safeNavigate
+import com.money.common.safeNavigateBack
 import com.money.desk.authorization.presentation.screens.forgot_screen.ForgotPasswordScreen
 import com.money.desk.authorization.presentation.screens.sign_in.SignInScreen
 import com.money.desk.authorization.presentation.screens.sign_up.SignUpScreen
@@ -13,7 +15,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 object AuthGraph
 
-fun NavController.navigateToAuthGraph() {
+fun NavController.navigateToAuthGraph() = safeNavigate {
     navigate(AuthGraph) {
         popUpTo(0) {
             inclusive = true
@@ -21,6 +23,7 @@ fun NavController.navigateToAuthGraph() {
         launchSingleTop = true
     }
 }
+
 
 fun NavGraphBuilder.authNavGraph(navController: NavController, navigateToMain: () -> Unit) {
     navigation<AuthGraph>(
@@ -33,21 +36,23 @@ fun NavGraphBuilder.authNavGraph(navController: NavController, navigateToMain: (
             SignInScreen(
                 navigateToMain = navigateToMain,
                 navigateToSignUp = {
-                    navController.navigate(AuthScreens.SignUp)
+                    navController.safeNavigate { navController.navigate(AuthScreens.SignUp) }
                 },
                 navigateForgot = {
-                    navController.navigate(AuthScreens.Forgot)
+                    navController.safeNavigate { navController.navigate(AuthScreens.Forgot) }
                 },
                 loginFromRegister = loginFromRegister
             )
         }
         composable<AuthScreens.SignUp> {
             SignUpScreen(
-                navigateBack = { navController.popBackStack() },
+                navigateBack = { navController.safeNavigateBack() },
                 navigateToSignIn = {
-                    navController.navigate(AuthScreens.SignIn(it)) {
-                        popUpTo<AuthScreens.SignIn> {
-                            inclusive = true
+                    navController.safeNavigate {
+                        navController.navigate(AuthScreens.SignIn(it)) {
+                            popUpTo<AuthScreens.SignIn> {
+                                inclusive = true
+                            }
                         }
                     }
                 }

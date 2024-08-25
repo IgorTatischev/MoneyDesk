@@ -75,7 +75,7 @@ dependencies {
     implementation(libs.dagger.hilt)
     ksp(libs.dagger.hilt.compiler)
     implementation(libs.google.material)
-    implementation(libs.android.appcompat)
+    implementation(libs.androidx.appcompat)
     implementation(libs.navigation.compose)
     implementation(libs.activity.compose)
     implementation(libs.kotlinx.json)
@@ -88,8 +88,8 @@ dependencies {
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
-    implementation(libs.extended.icons)
     implementation(libs.androidx.window)
+    implementation(libs.extended.icons)
     debugImplementation(libs.ui.test.manifest)
 
     implementation(projects.core.ui)
