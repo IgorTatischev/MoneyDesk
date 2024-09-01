@@ -12,5 +12,5 @@ internal interface AuthRepository {
 
     suspend fun googleSignIn(credential: AuthCredential): AuthResult
 
-    //todo reset password fun
+    suspend fun resetPassword(email: String)
 }

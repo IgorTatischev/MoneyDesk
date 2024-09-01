@@ -59,7 +59,9 @@ fun NavGraphBuilder.authNavGraph(navController: NavController, navigateToMain: (
             )
         }
         composable<AuthScreens.Forgot> {
-            ForgotPasswordScreen()
+            ForgotPasswordScreen(
+                navigateBack = { navController.safeNavigateBack() },
+            )
         }
     }
 }

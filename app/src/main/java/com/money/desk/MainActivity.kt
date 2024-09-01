@@ -3,6 +3,7 @@ package com.money.desk
 import android.app.Activity
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -42,7 +43,11 @@ class MainActivity : ComponentActivity() {
                     isLogin = auth.currentUser != null,
                     onSignOut = {
                         scope.launch {
-                            credentialManager.clearCredentialState(ClearCredentialStateRequest())
+                            try {
+                                credentialManager.clearCredentialState(ClearCredentialStateRequest())
+                            } catch (e: Exception) {
+                                Log.e("credential", e.message.toString())
+                            }
                         }
                         auth.signOut()
                     }

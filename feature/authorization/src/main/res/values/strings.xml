@@ -6,5 +6,8 @@
     <string name="name">Name</string>
     <string name="login_hint">you@gmail.com</string>
     <string name="forgot">Forgot password</string>
+    <string name="minimum_condition">Minimum 6 characters</string>
+    <string name="capitalized_condition">Has capitalized letter</string>
     <string name="register_error">Check your login or not all fields are filled in</string>
+    <string name="forgot_title">Enter your email address and we will send you a letter to reset your password</string>
 </resources>

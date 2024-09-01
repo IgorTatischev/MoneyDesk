@@ -16,10 +16,12 @@ fun RootHost(isLogin: Boolean, onSignOut: () -> Unit) {
         navController = navController,
         startDestination = if (isLogin) DrawerRoute else AuthGraph
     ) {
-        navigationDrawerHost(signOut = {
-            onSignOut()
-            navController.navigateToAuthGraph()
-        })
+        navigationDrawerHost(
+            signOut = {
+                onSignOut()
+                navController.navigateToAuthGraph()
+            }
+        )
         authNavGraph(
             navController = navController,
             navigateToMain = { navController.navigateToDrawer() }

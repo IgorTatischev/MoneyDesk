@@ -15,6 +15,7 @@ fun BaseTextField(
     value: String,
     @StringRes label: Int,
     icon: ImageVector,
+    isError: Boolean = false,
     onValueChange: (String) -> Unit,
 ) {
     OutlinedTextField(
@@ -29,5 +30,6 @@ fun BaseTextField(
                 contentDescription = null
             )
         },
+        isError = isError
     )
 }

@@ -6,7 +6,7 @@ internal data class SignUpState(
     val loginText: String = "",
     val passwordText: String = "",
     val nameText: String = "",
-    val isLoading: Boolean = false
+    val isLoading: Boolean = false,
 )
 
 internal sealed class UiEffect {

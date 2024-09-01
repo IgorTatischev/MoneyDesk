@@ -34,4 +34,9 @@ internal class AuthRepositoryImpl @Inject constructor(
 
     override suspend fun googleSignIn(credential: AuthCredential): AuthResult =
         firebaseAuth.signInWithCredential(credential).await()
+
+    override suspend fun resetPassword(email: String) {
+        firebaseAuth.sendPasswordResetEmail(email).await()
+        return
+    }
 }
