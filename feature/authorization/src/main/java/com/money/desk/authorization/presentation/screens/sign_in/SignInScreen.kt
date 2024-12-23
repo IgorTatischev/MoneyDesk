@@ -56,6 +56,7 @@ import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.firebase.auth.GoogleAuthProvider
 import com.money.authorization.R
 import com.money.common.Constants.CLIENT_ID
+import com.money.ui.components.SnowfallEffect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -144,6 +145,7 @@ internal fun SignInContent(
                 .fillMaxSize()
                 .padding(padding)
         ) {
+            SnowfallEffect()
             if (!state.isLoading) {
                 Column(
                     modifier = Modifier

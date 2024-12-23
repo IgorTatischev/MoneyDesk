@@ -12,6 +12,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
 import androidx.credentials.ClearCredentialStateRequest
 import androidx.credentials.CredentialManager
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.money.desk.navigation.RootHost
@@ -35,12 +36,14 @@ class MainActivity : ComponentActivity() {
         FirebaseApp.initializeApp(applicationContext)
 
         setContent {
+            val viewModel: MainViewModel = viewModel()
             val context = LocalContext.current
             val scope = rememberCoroutineScope()
 
             MoneyDeskTheme {
                 RootHost(
                     isLogin = auth.currentUser != null,
+                    onboardingCheck = viewModel.onboardingCheck.value,
                     onSignOut = {
                         scope.launch {
                             try {

@@ -10,4 +10,6 @@ internal sealed class AuthScreens {
     data object SignUp: AuthScreens()
     @Serializable
     data object Forgot: AuthScreens()
+    @Serializable
+    data object Onboarding: AuthScreens()
 }

@@ -10,4 +10,12 @@
     <string name="capitalized_condition">Has capitalized letter</string>
     <string name="register_error">Check your login or not all fields are filled in</string>
     <string name="forgot_title">Enter your email address and we will send you a letter to reset your password</string>
+    <string name="main_page_title">Control your payments</string>
+    <string name="category_page_title">Create categories</string>
+    <string name="wallet_page_title">Manage your wallets</string>
+    <string name="analytics_page_title">Check analytics</string>
+    <string name="main_page_text">Control your payments</string>
+    <string name="category_page_text">Create categories</string>
+    <string name="wallet_page_text">Manage your wallets</string>
+    <string name="analytics_page_text">Check analytics</string>
 </resources>

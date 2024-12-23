@@ -8,6 +8,7 @@ import androidx.navigation.toRoute
 import com.money.common.safeNavigate
 import com.money.common.safeNavigateBack
 import com.money.desk.authorization.presentation.screens.forgot_screen.ForgotPasswordScreen
+import com.money.desk.authorization.presentation.screens.onboarding.OnboardingScreen
 import com.money.desk.authorization.presentation.screens.sign_in.SignInScreen
 import com.money.desk.authorization.presentation.screens.sign_up.SignUpScreen
 import kotlinx.serialization.Serializable
@@ -25,14 +26,24 @@ fun NavController.navigateToAuthGraph() = safeNavigate {
 }
 
 
-fun NavGraphBuilder.authNavGraph(navController: NavController, navigateToMain: () -> Unit) {
+fun NavGraphBuilder.authNavGraph(navController: NavController, onboardingCheck: Boolean, navigateToMain: () -> Unit) {
     navigation<AuthGraph>(
-        startDestination = AuthScreens.SignIn()
+        startDestination = if(onboardingCheck) AuthScreens.SignIn() else AuthScreens.Onboarding
     ) {
+        composable<AuthScreens.Onboarding> {
+            OnboardingScreen(
+                navigateToSignIn = {
+                    navController.safeNavigate {
+                        navController.navigate(AuthScreens.SignIn()) {
+                            popUpTo<AuthScreens.SignIn> {
+                                inclusive = true
+                            }
+                        }
+                    }
+                })
+        }
         composable<AuthScreens.SignIn> {
-
             val loginFromRegister = it.toRoute<AuthScreens.SignIn>().login
-
             SignInScreen(
                 navigateToMain = navigateToMain,
                 navigateToSignUp = {
