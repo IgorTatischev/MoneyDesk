@@ -4,9 +4,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 
+/**Type for NavDrawer routes**/
+interface DrawerScreen
+
 /**
- * Process navigation if current lifecycle is RESUMED
- */
+ Process navigation if current lifecycle is RESUMED
+ **/
 
 fun NavController.safeNavigate(
     navigate: ()-> Unit

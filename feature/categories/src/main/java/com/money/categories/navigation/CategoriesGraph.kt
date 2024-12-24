@@ -6,11 +6,12 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.money.categories.presentation.screens.categories_screen.CategoryScreen
+import com.money.common.DrawerScreen
 import com.money.common.safeNavigate
 import kotlinx.serialization.Serializable
 
 @Serializable
-object CategoriesGraph
+object CategoriesGraph: DrawerScreen
 
 fun NavController.navigateToCategoriesGraph() = safeNavigate { navigate(CategoriesGraph) }
 

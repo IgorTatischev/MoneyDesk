@@ -14,24 +14,16 @@ import androidx.compose.ui.Modifier
 import com.money.ui.components.DrawerTopAppBar
 
 @Composable
-internal fun MainScreen(drawerState: DrawerState, navigateToSecond: () -> Unit) {
+internal fun MainSecondScreen(navigateBack: () -> Unit,) {
 
-    Scaffold(
-        topBar = {
-            DrawerTopAppBar(
-                drawerState = drawerState,
-            )
-        }
-    ) { paddingValues ->
-        Column(
-            modifier = Modifier.fillMaxSize().padding(paddingValues),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Text(text = "Main")
-            Button(onClick = navigateToSecond) {
-                Text(text = "Next")
-            }
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(text = "Second")
+        Button(onClick = navigateBack) {
+            Text(text = "Back")
         }
     }
 }
