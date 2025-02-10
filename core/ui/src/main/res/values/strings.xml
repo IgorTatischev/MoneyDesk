@@ -2,4 +2,6 @@
     <string name="start">Start</string>
     <string name="next_page">Next</string>
     <string name="skip">Skip</string>
+    <string name="income">Income</string>
+    <string name="expense">Expense</string>
 </resources>
