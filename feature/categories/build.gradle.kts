@@ -1,7 +1,10 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.serizliation)
+    alias(libs.plugins.ksp.plugin)
+    alias(libs.plugins.hilt.plugin)
 }
 
 android {
@@ -38,14 +41,18 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = libs.versions.java.versions.get()
-    }
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.kotlin.compiler.get()
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(
+            org.jetbrains.kotlin.gradle.dsl.JvmTarget.fromTarget(
+                libs.versions.java.versions.get()
+            )
+        )
     }
 }
 
@@ -64,6 +71,23 @@ dependencies {
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
     implementation(libs.androidx.window)
+    implementation(libs.extended.icons)
+
+    implementation(libs.dagger.hilt)
+    implementation(libs.dagger.hilt.navigation)
+    implementation(libs.identity.googleid)
+    ksp(libs.dagger.hilt.compiler)
+
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.auth)
+
+    implementation (libs.compose.dialogs.core)
+    implementation (libs.compose.dialogs.color)
+    implementation (libs.compose.dialogs.emoji)
+
+    implementation(libs.androidx.emoji2)
+    implementation(libs.androidx.emoji2.bundled)
 
     implementation(projects.core.ui)
     implementation(projects.core.common)

@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.serizliation)
     alias(libs.plugins.gms.plugin)
     alias(libs.plugins.ksp.plugin)
@@ -50,20 +51,24 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = libs.versions.java.versions.get()
-    }
     buildFeatures {
         compose = true
         buildConfig = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.kotlin.compiler.get()
     }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(
+            org.jetbrains.kotlin.gradle.dsl.JvmTarget.fromTarget(
+                libs.versions.java.versions.get()
+            )
+        )
     }
 }
 
@@ -91,6 +96,8 @@ dependencies {
     implementation(libs.androidx.window)
     implementation(libs.extended.icons)
     debugImplementation(libs.ui.test.manifest)
+    implementation(libs.androidx.emoji2)
+    implementation(libs.androidx.emoji2.bundled)
 
     implementation(projects.core.ui)
     implementation(projects.core.datastore)

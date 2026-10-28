@@ -21,46 +21,44 @@ release-editable = "false"
 debug-minify = "false"
 debug-editable = "true"
 
-compile-sdk = "34"
+compile-sdk = "37"
 min-sdk = "26"
-target-sdk = "34"
+target-sdk = "36"
 
-kotlin-compiler = "1.5.8"
 java-versions = "17"
 
-agp = "8.2.2"
-org-jetbrains-kotlin-android = "1.9.22"
-gradle = "8.1.4"
-kotlin = "1.9.22"
-ksp = "1.9.23-1.0.20"
-lifecycle-runtime = "2.7.0"
-appcompat = "1.6.1"
-coil = "2.4.0"
-retrofit = "2.9.0"
-okhttp = "4.12.0"
+agp = "8.13.2"
+org-jetbrains-kotlin-android = "2.4.21"
+kotlin = "2.4.21"
+ksp = "2.3.10"
+lifecycle-runtime = "2.11.0"
+appcompat = "1.8.0"
+coil = "2.7.0"
+emoji2 = "1.7.0"
+sheets-dialog = "1.3.0"
+retrofit = "3.0.0"
+okhttp = "5.5.1"
 compose-navigation = "2.8.1"
-datastore = "1.1.1"
-window = "1.3.0"
-room-runtime = "2.6.1"
-accompanist = "0.30.1"
-compose-bom = "2024.12.01"
-activity-compose = "1.9.3"
-espresso-core = "3.6.1"
-core-ktx = "1.13.1"
-kotlinx-collections-immutable = "0.3.6"
+datastore = "1.3.0"
+window = "1.5.1"
+room-runtime = "2.8.5"
+compose-bom = "2026.09.00"
+activity-compose = "1.13.0"
+espresso-core = "3.7.0"
+core-ktx = "1.19.1"
+kotlinx-collections-immutable = "0.5.2"
 junit = "4.13.2"
-androidx-test-ext-junit = "1.2.1"
-serialization = "1.6.3"
-google-services = "4.4.2"
-google-material = "1.12.0"
-google-fonts = "1.7.2"
-gson = "2.10.1"
-hilt = "2.53.1"
-compose_hilt = "1.2.0"
-firebase-bom = "33.3.0"
-play-services = "21.2.0"
-credentials = "1.2.2"
-googleid = "1.1.1"
+androidx-test-ext-junit = "1.3.0"
+serialization = "1.12.0"
+google-services = "4.5.0"
+google-material = "1.14.0"
+google-fonts = "1.12.1"
+hilt = "2.58"
+compose_hilt = "1.4.0"
+firebase-bom = "35.1.0"
+play-services = "22.0.0"
+credentials = "1.6.0"
+googleid = "1.2.1"
 navigation-runtime-ktx = "2.8.1"
 
 [libraries]
@@ -74,9 +72,14 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 
+androidx-emoji2 = { module = "androidx.emoji2:emoji2", version.ref = "emoji2" }
+androidx-emoji2-bundled = { module = "androidx.emoji2:emoji2-bundled", version.ref = "emoji2" }
+compose-dialogs-core = { module = "com.maxkeppeler.sheets-compose-dialogs:core", version.ref = "sheets-dialog" }
+compose-dialogs-color = { module = "com.maxkeppeler.sheets-compose-dialogs:color", version.ref = "sheets-dialog" }
+compose-dialogs-emoji = { module = "com.maxkeppeler.sheets-compose-dialogs:emoji", version.ref = "sheets-dialog" }
+
 google-material = { module = "com.google.android.material:material", version.ref = "google-material" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
-android-build-gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 kotlin_version = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "org-jetbrains-kotlin-android" }
 
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
@@ -94,13 +97,8 @@ coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 extended-icons = { module = "androidx.compose.material:material-icons-extended" }
 fonts-compose = { module = "androidx.compose.ui:ui-text-google-fonts", version.ref = "google-fonts"}
 
-accompanist-navigation = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "accompanist" }
-accompanist-permission = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
-accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
-
 kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinx-collections-immutable" }
 kotlinx-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
-gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
@@ -130,14 +128,14 @@ dagger-hilt-compiler = {module = "com.google.dagger:hilt-android-compiler", vers
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 ksp-plugin = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-kapt-plugin = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 gms-plugin = { id = "com.google.gms.google-services", version.ref = "google-services" }
 kotlin-serizliation = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt"}
 
 [bundles]
-room-impl = ["androidx-room-ktx", "androidx-room-runtime"]
 datastore-full = ["datastore", "datastore-proto"]
 retrofit-okhttp = ["retrofit", "retrofit-converter-gson", "okhttp", "okhttp-logging-interceptor"]
+room-impl = ["androidx-room-ktx", "androidx-room-runtime"]
