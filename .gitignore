@@ -8,3 +8,4 @@
 .externalNativeBuild
 .cxx
 local.properties
+/core/ui/src/main/java/com/money/ui/components/MultiplatformEditTexts.kt
