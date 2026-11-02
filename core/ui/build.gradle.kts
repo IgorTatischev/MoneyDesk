@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.compose.compiler)
 }
 
@@ -65,6 +64,7 @@ dependencies {
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
     implementation(libs.fonts.compose)
+    implementation(libs.extended.icons)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
