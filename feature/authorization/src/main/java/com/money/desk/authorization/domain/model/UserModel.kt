@@ -5,5 +5,4 @@ internal data class UserModel(
     val login: String,
     val password: String,
     val name: String,
-    //todo add image
 )

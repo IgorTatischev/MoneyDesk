@@ -1,7 +1,7 @@
 package com.money.desk.authorization.di
 
 import com.money.common.PasswordValidator
-import com.money.desk.authorization.data.firebase.AuthRepositoryImpl
+import com.money.desk.authorization.data.repository.AuthRepositoryImpl
 import com.money.desk.authorization.domain.repository.AuthRepository
 import dagger.Binds
 import dagger.Module

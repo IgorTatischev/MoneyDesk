@@ -9,3 +9,4 @@
 .cxx
 local.properties
 /core/ui/src/main/java/com/money/ui/components/MultiplatformEditTexts.kt
+/core/ui/build/

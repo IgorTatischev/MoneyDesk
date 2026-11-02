@@ -1,4 +1,4 @@
-package com.money.desk.authorization.data.firebase
+package com.money.desk.authorization.data.repository
 
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
