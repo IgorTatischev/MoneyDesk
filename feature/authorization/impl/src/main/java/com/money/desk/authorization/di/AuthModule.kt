@@ -1,0 +1,16 @@
+package com.money.desk.authorization.di
+
+import com.money.desk.authorization.data.repository.AuthRepository
+import com.money.desk.authorization.data.repository.AuthRepositoryImpl
+import dagger.Binds
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+
+@Module
+@InstallIn(SingletonComponent::class)
+internal abstract class AuthBindModule {
+
+    @Binds
+    abstract fun bindsAuthRepository(authRepositoryImpl: AuthRepositoryImpl): AuthRepository
+}

@@ -1,10 +1,5 @@
 plugins {
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.kotlin.serizliation)
-    alias(libs.plugins.gms.plugin)
-    alias(libs.plugins.ksp.plugin)
-    alias(libs.plugins.hilt.plugin)
+    id("moneydesk.android.application")
 }
 
 android {
@@ -17,8 +12,6 @@ android {
         targetSdk = libs.versions.target.sdk.get().toInt()
         versionCode = libs.versions.version.code.get().toInt()
         versionName = libs.versions.version.name.get()
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables {
             useSupportLibrary = true
@@ -94,16 +87,22 @@ dependencies {
     implementation(libs.material3)
     implementation(libs.androidx.window)
     implementation(libs.extended.icons)
-    debugImplementation(libs.ui.test.manifest)
     implementation(libs.androidx.emoji2)
     implementation(libs.androidx.emoji2.bundled)
 
+    implementation(projects.core.common.api)
+    implementation(projects.core.common.impl)
     implementation(projects.core.ui)
-    implementation(projects.core.datastore)
-    implementation(projects.core.common)
-    implementation(projects.feature.main)
-    implementation(projects.feature.settings)
-    implementation(projects.feature.authorization)
-    implementation(projects.feature.wallet)
-    implementation(projects.feature.categories)
+    implementation(projects.core.datastore.api)
+    implementation(projects.core.datastore.impl)
+    implementation(projects.feature.main.api)
+    implementation(projects.feature.main.impl)
+    implementation(projects.feature.settings.api)
+    implementation(projects.feature.settings.impl)
+    implementation(projects.feature.authorization.api)
+    implementation(projects.feature.authorization.impl)
+    implementation(projects.feature.wallet.api)
+    implementation(projects.feature.wallet.impl)
+    implementation(projects.feature.categories.api)
+    implementation(projects.feature.categories.impl)
 }

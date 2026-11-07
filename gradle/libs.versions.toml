@@ -60,6 +60,7 @@ play-services = "22.0.0"
 credentials = "1.6.0"
 googleid = "1.2.1"
 navigation-runtime-ktx = "2.8.1"
+coroutines = "1.10.2"
 
 [libraries]
 ui = { group = "androidx.compose.ui", name = "ui" }
@@ -98,6 +99,7 @@ extended-icons = { module = "androidx.compose.material:material-icons-extended" 
 fonts-compose = { module = "androidx.compose.ui:ui-text-google-fonts", version.ref = "google-fonts"}
 
 kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinx-collections-immutable" }
+kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlinx-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
@@ -125,14 +127,13 @@ dagger-hilt = {module = "com.google.dagger:hilt-android", version.ref = "hilt"}
 dagger-hilt-navigation = {module = "androidx.hilt:hilt-navigation-compose", version.ref = "compose_hilt"}
 dagger-hilt-compiler = {module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt"}
 
-[plugins]
-androidApplication = { id = "com.android.application", version.ref = "agp" }
-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-androidLibrary = { id = "com.android.library", version.ref = "agp" }
-ksp-plugin = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-gms-plugin = { id = "com.google.gms.google-services", version.ref = "google-services" }
-kotlin-serizliation = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt"}
+android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+compose-compiler-gradle-plugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+kotlin-serialization-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
+ksp-gradle-plugin = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+gms-gradle-plugin = { module = "com.google.gms:google-services", version.ref = "google-services" }
+hilt-gradle-plugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hilt" }
 
 [bundles]
 datastore-full = ["datastore", "datastore-proto"]

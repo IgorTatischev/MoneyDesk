@@ -60,6 +60,7 @@ class MainActivity : ComponentActivity() {
             DisposableEffect(key1 = Unit) {
                 val activity = context as Activity
                 val originalOrientation = activity.requestedOrientation
+                //todo update
                 activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
                 onDispose {
                     activity.requestedOrientation = originalOrientation
