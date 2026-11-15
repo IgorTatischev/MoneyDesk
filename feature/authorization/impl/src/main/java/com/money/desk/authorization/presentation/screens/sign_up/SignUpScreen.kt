@@ -29,13 +29,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.money.authorization.impl.R
 import com.money.ui.components.BaseTextField
@@ -50,7 +51,7 @@ internal fun SignUpScreen(
     viewModel: SignUpViewModel = hiltViewModel(),
 ) {
 
-    val context = LocalContext.current
+    val resources by rememberUpdatedState(LocalResources.current)
     val snackBarHostState = remember { SnackbarHostState() }
     val state by viewModel.signUpState.collectAsStateWithLifecycle()
     val passwordError by viewModel.passwordError.collectAsStateWithLifecycle()
@@ -65,7 +66,7 @@ internal fun SignUpScreen(
                 is UiEffect.ShowSnackbar -> {
                     snackBarHostState.showSnackbar(
                         if (effect.resId != null)
-                            context.getString(effect.resId)
+                            resources.getString(effect.resId)
                         else effect.message.toString()
                     )
                 }

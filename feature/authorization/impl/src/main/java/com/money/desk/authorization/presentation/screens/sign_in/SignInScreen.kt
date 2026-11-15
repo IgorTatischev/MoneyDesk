@@ -49,14 +49,13 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.firebase.auth.GoogleAuthProvider
 import com.money.authorization.impl.R
 import com.money.common.Constants.CLIENT_ID
-import com.money.ui.components.SnowfallEffect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -145,7 +144,6 @@ internal fun SignInContent(
                 .fillMaxSize()
                 .padding(padding)
         ) {
-            SnowfallEffect()
             if (!state.isLoading) {
                 Column(
                     modifier = Modifier

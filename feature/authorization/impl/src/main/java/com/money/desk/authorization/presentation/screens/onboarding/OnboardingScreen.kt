@@ -35,11 +35,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.money.desk.authorization.presentation.screens.onboarding.components.OnboardingScreenPageContent
 import com.money.desk.authorization.presentation.screens.onboarding.components.PageIndicator
-import com.money.ui.components.MainButton
+import com.money.ui.components.OnboardingButton
 import com.money.ui.components.TopBar
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -181,14 +181,14 @@ private fun OnboardingScreenContent(
                                 letterSpacing = 0.5.sp
                             )
                         }
-                        MainButton(
+                        OnboardingButton(
                             modifier = Modifier.weight(1f),
                             onClick = { onNextClick(pagerState.currentPage + 1) },
                             text = stringResource(id = CommonR.string.next_page)
                         )
                     }
                 } else {
-                    MainButton(
+                    OnboardingButton(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(start = 16.dp, end = 16.dp, bottom = 30.dp),

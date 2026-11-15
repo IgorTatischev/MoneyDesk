@@ -73,7 +73,10 @@ internal class SignUpViewModel @Inject constructor(
         ).onEach { result ->
             if (validate()) {
                 when (result) {
-                    is Resource.Error -> _uiEffect.emit(UiEffect.ShowSnackbar(message = result.message))
+                    is Resource.Error -> {
+                        _signUpState.update { it.copy(isLoading = false) }
+                        _uiEffect.emit(UiEffect.ShowSnackbar(message = result.message))
+                    }
 
                     is Resource.Loading -> _signUpState.update { it.copy(isLoading = true) }
 

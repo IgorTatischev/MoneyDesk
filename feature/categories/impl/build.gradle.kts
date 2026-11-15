@@ -19,7 +19,7 @@ dependencies {
     implementation(libs.activity.compose)
     implementation(libs.androidx.window)
     implementation(libs.extended.icons)
-    implementation(libs.dagger.hilt.navigation)
+    implementation(libs.dagger.hilt.viewmodel.compose)
     implementation(libs.identity.googleid)
 
     implementation(platform(libs.firebase.bom))
@@ -30,5 +30,4 @@ dependencies {
     implementation(libs.compose.dialogs.color)
     implementation(libs.compose.dialogs.emoji)
     implementation(libs.androidx.emoji2)
-    implementation(libs.androidx.emoji2.bundled)
 }

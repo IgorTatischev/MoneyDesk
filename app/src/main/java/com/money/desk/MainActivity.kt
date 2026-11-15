@@ -57,10 +57,10 @@ class MainActivity : ComponentActivity() {
                 )
             }
 
+            //todo after all make tablet support and unlock orientation
             DisposableEffect(key1 = Unit) {
                 val activity = context as Activity
                 val originalOrientation = activity.requestedOrientation
-                //todo update
                 activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
                 onDispose {
                     activity.requestedOrientation = originalOrientation

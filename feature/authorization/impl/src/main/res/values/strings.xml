@@ -1,6 +1,7 @@
 <resources>
     <string name="sign_in">Sign in</string>
     <string name="sign_up">Sign up</string>
+    <string name="send">Send</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="name">Name</string>
@@ -9,7 +10,7 @@
     <string name="minimum_condition">Minimum 6 characters</string>
     <string name="capitalized_condition">Has capitalized letter</string>
     <string name="register_error">Check your login or not all fields are filled in</string>
-    <string name="forgot_title">Enter your email address and we will send you a letter to reset your password</string>
+    <string name="forgot_title">Enter your email address, and we will send you a letter to reset your password</string>
     <string name="main_page_title">Control your payments</string>
     <string name="category_page_title">Create categories</string>
     <string name="wallet_page_title">Manage your wallets</string>
