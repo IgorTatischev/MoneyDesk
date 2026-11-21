@@ -13,6 +13,8 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.OutlinedTextFieldDefaults.FocusedBorderThickness
+import androidx.compose.material3.OutlinedTextFieldDefaults.UnfocusedBorderThickness
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldColors
@@ -110,12 +112,14 @@ fun SimpleTextField(
             placeholder = placeholder,
             colors = colors,
             container = {
-                OutlinedTextFieldDefaults.ContainerBox(
+                OutlinedTextFieldDefaults.Container(
                     enabled = enabled,
                     isError = false,
                     interactionSource = interactionSource,
                     colors = colors,
-                    shape = containerShape
+                    shape = containerShape,
+                    focusedBorderThickness = FocusedBorderThickness,
+                    unfocusedBorderThickness = UnfocusedBorderThickness,
                 )
             },
         )

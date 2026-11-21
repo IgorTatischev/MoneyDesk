@@ -1,0 +1,10 @@
+<resources>
+    <string name="new_category">New category</string>
+    <string name="category_name">Category name</string>
+    <string name="category_color">Color</string>
+    <string name="category_icon">Icon</string>
+    <string name="save">Save</string>
+    <string name="edit_category">Edit category</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+</resources>

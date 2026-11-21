@@ -93,7 +93,9 @@ internal class CategoryIncomeRepositoryImpl @Inject constructor(
                 }
 
                 if (defaultCategories != null) {
-                    val categories = defaultCategories.toObjects(CategoryModel::class.java)
+                    val categories = defaultCategories.documents.mapNotNull { doc ->
+                        doc.toObject(CategoryModel::class.java)?.copy(id = doc.id, isDefault = true)
+                    }
                     trySend(Resource.Success(categories))
                 }
             }
@@ -127,7 +129,9 @@ internal class CategoryIncomeRepositoryImpl @Inject constructor(
                 }
 
                 if (userCategories != null) {
-                    val categories = userCategories.toObjects(CategoryModel::class.java)
+                    val categories = userCategories.documents.mapNotNull { doc ->
+                        doc.toObject(CategoryModel::class.java)?.copy(id = doc.id, isDefault = false)
+                    }
                     trySend(Resource.Success(categories))
                 }
             }
