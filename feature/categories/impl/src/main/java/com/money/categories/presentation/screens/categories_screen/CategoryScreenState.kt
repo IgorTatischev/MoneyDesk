@@ -1,5 +1,6 @@
 package com.money.categories.presentation.screens.categories_screen
 
+import androidx.annotation.StringRes
 import androidx.compose.runtime.Immutable
 import com.money.categories.domain.model.CategoryModel
 import com.money.categories.presentation.components.DefaultCategoryColor
@@ -51,5 +52,5 @@ internal sealed class CategoryScreenEvent {
 }
 
 internal sealed class CategoryScreenEffect {
-    data class ShowError(val message: String) : CategoryScreenEffect()
+    data class ShowSnackbar(@StringRes val messageRes: Int? = null, val message: String? = null) : CategoryScreenEffect()
 }

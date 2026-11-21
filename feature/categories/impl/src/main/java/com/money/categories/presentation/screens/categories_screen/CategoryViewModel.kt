@@ -2,6 +2,7 @@ package com.money.categories.presentation.screens.categories_screen
 
 import androidx.lifecycle.viewModelScope
 import com.money.categories.domain.model.CategoryModel
+import com.money.categories.impl.R
 import com.money.categories.domain.use_cases.AddUserExpenseCategoryUseCase
 import com.money.categories.domain.use_cases.AddUserIncomeCategoryUseCase
 import com.money.categories.domain.use_cases.DeleteUserExpenseCategoryUseCase
@@ -129,12 +130,13 @@ internal class CategoryViewModel @Inject constructor(
                 CategoryTabs.Income -> deleteUserIncomeCategoryUseCase(categoryId)
                 CategoryTabs.Expense -> deleteUserExpenseCategoryUseCase(categoryId)
             }
-            if (result is Resource.Success) {
-                addSheet.value = null
-            } else {
-                addSheet.update { it?.copy(isDeleting = false) }
-                sendEffect(CategoryScreenEffect.ShowError(result.message ?: "Unknown error"))
-            }
+            addSheet.value = null
+            sendEffect(
+                CategoryScreenEffect.ShowSnackbar(
+                    if (result is Resource.Success) R.string.category_deleted
+                    else R.string.category_delete_failed
+                )
+            )
         }
     }
 
@@ -159,17 +161,14 @@ internal class CategoryViewModel @Inject constructor(
                 sheet.type == CategoryTabs.Income -> addUserIncomeCategoryUseCase(category)
                 else -> addUserExpenseCategoryUseCase(category)
             }
-            when (result) {
-                is Resource.Success -> {
-                    addSheet.value = null
-                    selectedTab.value = sheet.type
-                }
-
-                else -> {
-                    addSheet.update { it?.copy(isSaving = false) }
-                    sendEffect(CategoryScreenEffect.ShowError(result.message ?: "Unknown error"))
-                }
+            addSheet.value = null
+            val message = when {
+                result !is Resource.Success -> R.string.category_save_failed
+                editingId != null -> R.string.category_updated
+                else -> R.string.category_added
             }
+            if (result is Resource.Success) selectedTab.value = sheet.type
+            sendEffect(CategoryScreenEffect.ShowSnackbar(message))
         }
     }
 }

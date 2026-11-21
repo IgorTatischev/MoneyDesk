@@ -1,5 +1,8 @@
 package com.money.categories.presentation.components
 
+import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.material3.SheetValue
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -55,7 +58,10 @@ import com.money.ui.util.ButtonsDefaults
 @Composable
 internal fun AddCategoryBottomSheet(
     state: AddCategorySheetState,
+    /** false once the screen closed the sheet: it then animates out and calls [onHidden]. */
+    visible: Boolean,
     onDismiss: () -> Unit,
+    onHidden: () -> Unit,
     onNameChange: (String) -> Unit,
     onTypeChange: (CategoryTabs) -> Unit,
     onColorChange: (Int) -> Unit,
@@ -63,7 +69,21 @@ internal fun AddCategoryBottomSheet(
     onSave: () -> Unit,
     onDelete: () -> Unit,
 ) {
-    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+    // While saving/deleting the user can't swipe/tap the sheet away (the VM ignores dismiss
+    // then, so the sheet would end up hidden but still "open").
+    val blockUserDismiss by rememberUpdatedState(visible && state.isBusy)
+    val sheetState = rememberModalBottomSheetState(
+        skipPartiallyExpanded = true,
+        confirmValueChange = { it != SheetValue.Hidden || !blockUserDismiss },
+    )
+    val currentOnHidden by rememberUpdatedState(onHidden)
+
+    LaunchedEffect(visible) {
+        if (!visible) {
+            sheetState.hide()
+            currentOnHidden()
+        }
+    }
     var showColorPicker by rememberSaveable { mutableStateOf(false) }
     var showEmojiPicker by rememberSaveable { mutableStateOf(false) }
 

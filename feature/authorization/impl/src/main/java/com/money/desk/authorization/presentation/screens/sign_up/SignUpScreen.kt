@@ -65,8 +65,8 @@ internal fun SignUpScreen(
 
                 is UiEffect.ShowSnackbar -> {
                     snackBarHostState.showSnackbar(
-                        if (effect.resId != null)
-                            resources.getString(effect.resId)
+                        if (effect.messageRes != null)
+                            resources.getString(effect.messageRes)
                         else effect.message.toString()
                     )
                 }

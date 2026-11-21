@@ -11,5 +11,5 @@ internal data class SignUpState(
 
 internal sealed class UiEffect {
     data class NavigateToSignInScreen(val login: String): UiEffect()
-    data class ShowSnackbar(@StringRes val resId: Int? = null, val message: String? = null): UiEffect()
+    data class ShowSnackbar(@StringRes val messageRes: Int? = null, val message: String? = null): UiEffect()
 }

@@ -86,7 +86,7 @@ internal class SignUpViewModel @Inject constructor(
                     }
                 }
             } else {
-                _uiEffect.emit(UiEffect.ShowSnackbar(resId = R.string.register_error))
+                _uiEffect.emit(UiEffect.ShowSnackbar(messageRes = R.string.register_error))
             }
         }.launchIn(viewModelScope)
     }

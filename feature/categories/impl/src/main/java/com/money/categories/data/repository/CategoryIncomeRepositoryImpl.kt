@@ -40,6 +40,8 @@ internal class CategoryIncomeRepositoryImpl @Inject constructor(
     }
     */
 
+    //one function variant
+    /*
     private fun getIncomeCategories(): Flow<Resource<List<CategoryModel>>> = callbackFlow {
         trySend(Resource.Loading())
         val categories = mutableListOf<CategoryModel>()
@@ -77,7 +79,7 @@ internal class CategoryIncomeRepositoryImpl @Inject constructor(
         }
         awaitClose { defaultListener.remove() }
     }
-
+    */
 
     override fun getDefaultIncomeCategories(): Flow<Resource<List<CategoryModel>>> = callbackFlow {
         trySend(Resource.Loading())

@@ -7,4 +7,9 @@
     <string name="edit_category">Edit category</string>
     <string name="update">Update</string>
     <string name="delete">Delete</string>
+    <string name="category_added">Category added</string>
+    <string name="category_updated">Category updated</string>
+    <string name="category_deleted">Category deleted</string>
+    <string name="category_save_failed">Failed to save</string>
+    <string name="category_delete_failed">Failed to delete</string>
 </resources>

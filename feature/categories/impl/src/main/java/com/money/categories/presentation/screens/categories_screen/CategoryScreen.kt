@@ -1,5 +1,8 @@
 package com.money.categories.presentation.screens.categories_screen
 
+import kotlinx.coroutines.flow.first
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.animation.fadeIn
@@ -64,6 +67,8 @@ import com.money.ui.theme.MoneyDeskTheme
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.material3.DrawerValue
+import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.zIndex
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -82,20 +87,37 @@ internal fun CategoryScreen(
     viewModel: CategoryViewModel = hiltViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-    val snackbarHostState = remember { SnackbarHostState() }
+
+    val resources by rememberUpdatedState(LocalResources.current)
+    val snackBarHostState = remember { SnackbarHostState() }
+
+    val sheet = (state as? CategoryScreenState.Content)?.addCategorySheet
+    // Last shown sheet state, kept while the sheet animates out after the VM closed it.
+    var lastSheet by remember { mutableStateOf<AddCategorySheetState?>(null) }
+    val sheetToShow = sheet ?: lastSheet
+    val isSheetShown by rememberUpdatedState(sheetToShow != null)
 
     LaunchedEffect(viewModel) {
         viewModel.effects.collect { effect ->
             when (effect) {
-                is CategoryScreenEffect.ShowError -> snackbarHostState.showSnackbar(effect.message)
+                is CategoryScreenEffect.ShowSnackbar -> {
+                    snapshotFlow { isSheetShown }.first { !it }
+                    snackBarHostState.showSnackbar(
+                        if (effect.messageRes != null)
+                            resources.getString(effect.messageRes)
+                        else effect.message.toString()
+                    )
+                }
             }
         }
     }
 
+    SideEffect { if (sheet != null && sheet != lastSheet) lastSheet = sheet }
+
     CategoryScreenContent(
         state = state,
         drawerState = drawerState,
-        snackbarHostState = snackbarHostState,
+        snackbarHostState = snackBarHostState,
         onTabSelected = { viewModel.processEvent(CategoryScreenEvent.SelectTab(it)) },
         onAddCategoryClick = { viewModel.processEvent(CategoryScreenEvent.AddCategoryClick(it)) },
         onCategoryClick = { category, tab ->
@@ -103,10 +125,12 @@ internal fun CategoryScreen(
         },
     )
 
-    (state as? CategoryScreenState.Content)?.addCategorySheet?.let { sheet ->
+    sheetToShow?.let { shownSheet ->
         AddCategoryBottomSheet(
-            state = sheet,
+            state = shownSheet,
+            visible = sheet != null,
             onDismiss = { viewModel.processEvent(CategoryScreenEvent.DismissAddCategory) },
+            onHidden = { lastSheet = null },
             onNameChange = { viewModel.processEvent(CategoryScreenEvent.AddCategoryNameChange(it)) },
             onTypeChange = { viewModel.processEvent(CategoryScreenEvent.AddCategoryTypeChange(it)) },
             onColorChange = { viewModel.processEvent(CategoryScreenEvent.AddCategoryColorChange(it)) },
