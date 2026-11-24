@@ -16,7 +16,6 @@ dependencies {
     implementation(libs.lifecycle.runtime.compose)
     implementation(libs.dagger.hilt.viewmodel.compose)
     implementation(libs.identity.googleid)
-    implementation(libs.google.material)
     implementation(libs.androidx.appcompat)
     implementation(libs.navigation.compose)
     implementation(libs.activity.compose)

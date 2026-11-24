@@ -33,6 +33,9 @@ import com.money.authorization.impl.R
 import com.money.ui.components.BaseTextField
 import com.money.ui.components.MainButton
 import kotlinx.coroutines.flow.collectLatest
+import com.money.ui.theme.MoneyDeskTheme
+import com.money.ui.theme.Spacing
+import com.money.ui.util.ScreenPreviews
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -55,6 +58,24 @@ internal fun ForgotPasswordScreen(
         }
     }
 
+    ForgotPasswordContent(
+        snackBarHostState = snackBarHostState,
+        state = state,
+        navigateBack = navigateBack,
+        changeEmail = viewModel::changeEmailText,
+        resetPassword = viewModel::resetPassword,
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+internal fun ForgotPasswordContent(
+    snackBarHostState: SnackbarHostState,
+    state: ForgotState,
+    navigateBack: () -> Unit,
+    changeEmail: (String) -> Unit,
+    resetPassword: () -> Unit,
+) {
     Scaffold(
         topBar = {
             TopAppBar(title = { }, navigationIcon = {
@@ -73,7 +94,7 @@ internal fun ForgotPasswordScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
-                .padding(horizontal = 40.dp),
+                .padding(horizontal = Spacing.xxl),
             verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterVertically),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -88,17 +109,31 @@ internal fun ForgotPasswordScreen(
                 value = state.emailText,
                 label = R.string.login,
                 icon = Icons.Outlined.AccountCircle,
-                onValueChange = viewModel::changeEmailText
+                onValueChange = changeEmail
             )
 
             Spacer(modifier = Modifier.height(20.dp))
 
             MainButton(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = viewModel::resetPassword,
+                onClick = resetPassword,
                 loading = state.isLoading,
                 text = stringResource(id = R.string.send)
             )
         }
+    }
+}
+
+@ScreenPreviews
+@Composable
+private fun ForgotPasswordContentPreview() {
+    MoneyDeskTheme {
+        ForgotPasswordContent(
+            snackBarHostState = remember { SnackbarHostState() },
+            state = ForgotState(emailText = "user@mail.com"),
+            navigateBack = {},
+            changeEmail = {},
+            resetPassword = {},
+        )
     }
 }
