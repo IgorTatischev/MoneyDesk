@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.money.desk.authorization.presentation.screens.onboarding.OnboardingPages
 import com.money.ui.theme.MoneyDeskTheme
+import com.money.ui.theme.Spacing
 
 @Composable
 internal fun OnboardingScreenPageContent(modifier: Modifier = Modifier, page: OnboardingPages) {
@@ -34,7 +35,7 @@ internal fun OnboardingScreenPageContent(modifier: Modifier = Modifier, page: On
             painter = painterResource(id = page.image),
             contentDescription = null,
         )
-        Spacer(Modifier.height(40.dp))
+        Spacer(Modifier.height(Spacing.xxl))
         Text(
             text = stringResource(id = page.titleText),
             style = MaterialTheme.typography.displayMedium.copy(
@@ -42,7 +43,7 @@ internal fun OnboardingScreenPageContent(modifier: Modifier = Modifier, page: On
                 lineHeight = 26.sp
             )
         )
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(Spacing.m))
         Text(
             text = stringResource(id = page.descriptionText),
             minLines = 3,

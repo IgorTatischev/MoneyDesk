@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AccountCircle
@@ -58,6 +57,9 @@ import com.money.authorization.impl.R
 import com.money.common.Constants.CLIENT_ID
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import com.money.ui.theme.MoneyDeskTheme
+import com.money.ui.theme.Spacing
+import com.money.ui.util.ScreenPreviews
 
 @Composable
 internal fun SignInScreen(
@@ -149,7 +151,7 @@ internal fun SignInContent(
                     modifier = Modifier
                         .fillMaxSize()
                         .align(Alignment.Center)
-                        .padding(horizontal = 40.dp),
+                        .padding(horizontal = Spacing.xxl),
                     verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterVertically),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
@@ -163,7 +165,7 @@ internal fun SignInContent(
                         value = login,
                         onValueChange = setLogin,
                         singleLine = true,
-                        shape = RoundedCornerShape(15.dp),
+                        shape = MaterialTheme.shapes.medium,
                         label = { Text(text = stringResource(id = R.string.login)) },
                         placeholder = { Text(text = stringResource(id = R.string.login_hint)) },
                         leadingIcon = {
@@ -178,7 +180,7 @@ internal fun SignInContent(
                         value = password,
                         onValueChange = setPass,
                         singleLine = true,
-                        shape = RoundedCornerShape(30.dp),
+                        shape = MaterialTheme.shapes.extraLarge,
                         label = { Text(text = stringResource(id = R.string.password)) },
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                         visualTransformation =
@@ -201,7 +203,7 @@ internal fun SignInContent(
                         },
                     )
 
-                    Spacer(modifier = Modifier.height(40.dp))
+                    Spacer(modifier = Modifier.height(Spacing.xxl))
 
                     Button(
                         modifier = Modifier.fillMaxWidth(),
@@ -249,5 +251,20 @@ internal fun SignInContent(
             } else
                 CircularProgressIndicator(Modifier.align(Alignment.Center))
         }
+    }
+}
+
+@ScreenPreviews
+@Composable
+private fun SignInContentPreview() {
+    MoneyDeskTheme {
+        SignInContent(
+            snackBarHostState = remember { SnackbarHostState() },
+            state = SignInState(),
+            navigateToSignUp = {},
+            navigateForgot = {},
+            signIn = { _, _ -> },
+            signInWithGoogle = {},
+        )
     }
 }

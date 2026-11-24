@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.MoneyDesk" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- UI is fully Compose (MoneyDeskTheme); this theme only styles the window until Compose draws. -->
+    <style name="Theme.MoneyDesk" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/window_background</item>
+        <item name="android:colorBackground">@color/window_background</item>
+        <item name="colorSurface">@color/window_background</item>
+    </style>
 </resources>

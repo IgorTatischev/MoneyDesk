@@ -11,7 +11,6 @@ import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.OutlinedTextFieldDefaults.FocusedBorderThickness
 import androidx.compose.material3.OutlinedTextFieldDefaults.UnfocusedBorderThickness
@@ -33,7 +32,7 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
+import com.money.ui.util.ThemePreviews
 import androidx.compose.ui.unit.dp
 import com.money.ui.theme.MoneyDeskTheme
 import com.money.ui.util.TextFieldsDefaults
@@ -42,7 +41,7 @@ import com.money.ui.util.TextFieldsDefaults.maxTextFieldHeight
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SimpleTextField(
+fun AlternativeBaseTextField(
     modifier: Modifier = Modifier,
     value: String,
     onValueChange: (String) -> Unit,
@@ -86,6 +85,7 @@ fun SimpleTextField(
             value = value,
             innerTextField = innerTextField,
             enabled = enabled,
+            isError = error != null,
             label = label?.takeIf { it.isNotBlank() && value.isNotEmpty() }?.let {
                 {
                     Text(text = it, style = TextFieldsDefaults.labelTextStyle)
@@ -114,7 +114,7 @@ fun SimpleTextField(
             container = {
                 OutlinedTextFieldDefaults.Container(
                     enabled = enabled,
-                    isError = false,
+                    isError = error != null,
                     interactionSource = interactionSource,
                     colors = colors,
                     shape = containerShape,
@@ -127,7 +127,7 @@ fun SimpleTextField(
 }
 
 @Composable
-fun SimpleTextField(
+fun AlternativeBaseTextField(
     modifier: Modifier = Modifier,
     value: String,
     onValueChange: (String) -> Unit,
@@ -147,7 +147,7 @@ fun SimpleTextField(
     readOnly: Boolean = false,
     visualTransformation: VisualTransformation = VisualTransformation.None,
 ) {
-    SimpleTextField(
+    AlternativeBaseTextField(
         modifier = modifier,
         value = value,
         onValueChange = onValueChange,
@@ -160,7 +160,6 @@ fun SimpleTextField(
                 Text(
                     text = it,
                     style = textStyle,
-                    color = MaterialTheme.colorScheme.surfaceContainer
                 )
             }
         },
@@ -179,7 +178,7 @@ fun SimpleTextField(
 }
 
 @Composable
-fun SimpleTextField(
+fun AlternativeBaseTextField(
     modifier: Modifier = Modifier,
     value: String,
     onValueChange: (String) -> Unit,
@@ -198,7 +197,7 @@ fun SimpleTextField(
     maxLines: Int = Int.MAX_VALUE,
     readOnly: Boolean = false,
 ) {
-    SimpleTextField(
+    AlternativeBaseTextField(
         modifier = modifier,
         value = value,
         onValueChange = onValueChange,
@@ -210,7 +209,6 @@ fun SimpleTextField(
                 Text(
                     text = it,
                     style = textStyle,
-                    color = MaterialTheme.colorScheme.surfaceContainer
                 )
             }
         },
@@ -229,12 +227,12 @@ fun SimpleTextField(
 }
 
 @Composable
-@Preview
+@ThemePreviews
 private fun Preview() {
     MoneyDeskTheme {
         Surface {
             Column {
-                SimpleTextField(
+                AlternativeBaseTextField(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(8.dp),
@@ -249,7 +247,7 @@ private fun Preview() {
                 val textFieldHeightDp = with(LocalDensity.current) { textFieldHeightPx.toDp() }
                 var showLabel by remember { mutableStateOf(true) }
 
-                SimpleTextField(
+                AlternativeBaseTextField(
                     modifier = Modifier
                         .fillMaxWidth()
                         .heightIn(min = 156.dp, max = maxHeight)

@@ -16,8 +16,9 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalMinimumInteractiveComponentEnforcement
+import androidx.compose.material3.LocalMinimumInteractiveComponentSize
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -25,17 +26,17 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawOutline
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.platform.LocalLayoutDirection
+import com.money.ui.util.ThemePreviews
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.money.ui.theme.MoneyDeskTheme
-import com.money.ui.theme.onBackgroundLightMediumContrast
+import com.money.ui.theme.Spacing
 import com.money.ui.util.ButtonsDefaults
-import com.money.ui.util.dpToPx
 import kotlinx.coroutines.launch
 
 
@@ -48,7 +49,10 @@ fun OnboardingButton(
     contentPadding: PaddingValues = ButtonsDefaults.MediumButtonPadding,
     content: @Composable () -> Unit,
 ) {
-    val cornerRadiusPx = ButtonsDefaults.cornerRadius.dpToPx(LocalDensity.current)
+    val layoutDirection = LocalLayoutDirection.current
+    val shape = ButtonsDefaults.DefaultButtonShape
+    val shadowColor = if (enabled) MaterialTheme.colorScheme.onBackground else Color.Gray
+
     val animSpec = spring<Float>(
         dampingRatio = Spring.DampingRatioNoBouncy,
         stiffness = Spring.StiffnessHigh
@@ -57,6 +61,7 @@ fun OnboardingButton(
     val pressed = interactionSource.collectIsPressedAsState()
     val currentOffsetX = remember { Animatable(1f) }
     val currentOffsetY = remember { Animatable(1f) }
+
     LaunchedEffect(key1 = pressed.value) {
         if (pressed.value) {
             launch {
@@ -75,13 +80,13 @@ fun OnboardingButton(
         }
     }
 
-    CompositionLocalProvider(LocalMinimumInteractiveComponentEnforcement provides false) {
+    CompositionLocalProvider(LocalMinimumInteractiveComponentSize provides Dp.Unspecified) {
         Button(
             modifier = modifier
                 .drawBehind {
-                    drawRoundRect(
-                        cornerRadius = CornerRadius(x = cornerRadiusPx, y = cornerRadiusPx),
-                        color = if (enabled) onBackgroundLightMediumContrast else Color.Gray,
+                    drawOutline(
+                        outline = shape.createOutline(size, layoutDirection, this),
+                        color = shadowColor,
                     )
                 }
                 .graphicsLayer {
@@ -98,7 +103,7 @@ fun OnboardingButton(
                 disabledContainerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
                 disabledContentColor = MaterialTheme.colorScheme.surfaceContainer,
             ),
-            shape = ButtonsDefaults.DefaultButtonShape,
+            shape = shape,
             enabled = enabled,
             border = BorderStroke(
                 1.dp,
@@ -204,33 +209,35 @@ fun OnboardingButtonSmall(
 }
 
 
-@Preview
+@ThemePreviews
 @Composable
 private fun OnboardingButtonPreview() {
     MoneyDeskTheme {
-        Column(
-            modifier = Modifier
-                .padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            OnboardingButton(
-                modifier = Modifier.wrapContentSize(),
-                onClick = {},
+        Surface {
+            Column(
+                modifier = Modifier.padding(Spacing.m),
+                verticalArrangement = Arrangement.spacedBy(Spacing.xs)
             ) {
-                Text(text = "first")
+                OnboardingButton(
+                    modifier = Modifier.wrapContentSize(),
+                    onClick = {},
+                ) {
+                    Text(text = "first")
+                }
+                OnboardingButtonSmall(
+                    modifier = Modifier,
+                    onClick = {},
+                    text = "second",
+                    enabled = false,
+                )
+                OnboardingButtonSmall(
+                    modifier = Modifier,
+                    onClick = {},
+                    loading = true,
+                    text = "second",
+                    enabled = true,
+                )
             }
-            OnboardingButtonSmall(
-                modifier = Modifier,
-                onClick = {},
-                text = "second",
-                enabled = false,
-            )
-            OnboardingButtonSmall(
-                modifier = Modifier,
-                onClick = {},
-                loading = true,
-                text = "second",
-                enabled = true,
-            )
         }
     }
 }

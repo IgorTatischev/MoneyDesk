@@ -46,6 +46,9 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.onEach
 import kotlin.enums.EnumEntries
 import com.money.ui.R as CommonR
+import com.money.ui.theme.MoneyDeskTheme
+import com.money.ui.theme.Spacing
+import com.money.ui.util.ScreenPreviews
 
 @Composable
 internal fun OnboardingScreen(
@@ -119,7 +122,7 @@ private fun OnboardingScreenContent(
         containerColor = MaterialTheme.colorScheme.surface,
         topBar = {
             TopBar(
-                modifier = Modifier.padding(horizontal = 16.dp),
+                modifier = Modifier.padding(horizontal = Spacing.m),
                 onBackClick = if (pagerState.currentPage > 0) onBackClick else null,
                 backgroundColor = MaterialTheme.colorScheme.surface
             )
@@ -135,7 +138,7 @@ private fun OnboardingScreenContent(
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(horizontal = 16.dp)
+                        .padding(horizontal = Spacing.m)
                 ) {
                     OnboardingScreenPageContent(
                         //modifier = Modifier.padding(bottom = footerHeight.pxToDp(LocalDensity.current)),
@@ -161,13 +164,13 @@ private fun OnboardingScreenContent(
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(start = 16.dp, end = 16.dp, bottom = 30.dp),
-                        horizontalArrangement = Arrangement.spacedBy(24.dp),
+                            .padding(start = Spacing.m, end = Spacing.m, bottom = 30.dp),
+                        horizontalArrangement = Arrangement.spacedBy(Spacing.l),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         TextButton(
                             modifier = Modifier.weight(0.6f),
-                            contentPadding = PaddingValues(vertical = 16.dp, horizontal = 0.dp),
+                            contentPadding = PaddingValues(vertical = Spacing.m, horizontal = 0.dp),
                             onClick = onNavigateToAuth,
                             colors = ButtonDefaults.textButtonColors(
                                 contentColor = MaterialTheme.colorScheme.primary
@@ -191,7 +194,7 @@ private fun OnboardingScreenContent(
                     OnboardingButton(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(start = 16.dp, end = 16.dp, bottom = 30.dp),
+                            .padding(start = Spacing.m, end = Spacing.m, bottom = 30.dp),
                         onClick = onNavigateToAuth,
                         text = stringResource(id = CommonR.string.start)
                     )
@@ -202,3 +205,18 @@ private fun OnboardingScreenContent(
 }
 
 //fun Int.pxToDp(density: Density) = with(density) { this@pxToDp.toDp() }
+
+@ScreenPreviews
+@Composable
+private fun OnboardingScreenContentPreview() {
+    val pages = OnboardingPages.entries
+    MoneyDeskTheme {
+        OnboardingScreenContent(
+            pagerState = rememberPagerState { pages.size },
+            pages = pages,
+            onNavigateToAuth = {},
+            onNextClick = {},
+            onBackClick = {},
+        )
+    }
+}

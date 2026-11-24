@@ -80,6 +80,7 @@ import com.money.ui.components.DrawerTopAppBar
 import com.money.ui.data.CategoryTabs
 import com.money.ui.util.NoRippleInteractionSource
 import kotlinx.coroutines.flow.distinctUntilChanged
+import com.money.ui.theme.Spacing
 
 @Composable
 internal fun CategoryScreen(
@@ -171,7 +172,7 @@ private fun CategoryScreenContent(
                 is CategoryScreenState.Error -> Text(
                     modifier = Modifier
                         .align(Alignment.Center)
-                        .padding(16.dp),
+                        .padding(Spacing.m),
                     text = state.message,
                     textAlign = TextAlign.Center,
                     color = MaterialTheme.colorScheme.error,
@@ -279,7 +280,7 @@ private fun CategoryTabsContent(
                 visible = scrollableByPage[pagerState.currentPage] == true,
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
-                    .padding(16.dp),
+                    .padding(Spacing.m),
                 enter = scaleIn(),
                 exit = scaleOut(),
             ) {

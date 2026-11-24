@@ -28,7 +28,6 @@ import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -49,10 +48,12 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import com.money.categories.impl.R
 import com.money.categories.presentation.screens.categories_screen.AddCategorySheetState
+import com.money.ui.components.AlternativeBaseTextField
 import com.money.ui.components.MainButton
 import com.money.ui.data.CategoryTabs
 import com.money.ui.theme.MoneyDeskTheme
 import com.money.ui.util.ButtonsDefaults
+import com.money.ui.theme.Spacing
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -137,9 +138,9 @@ private fun AddCategorySheetContent(
         modifier = Modifier
             .fillMaxWidth()
             .imePadding()
-            .padding(horizontal = 16.dp)
-            .padding(bottom = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+            .padding(horizontal = Spacing.m)
+            .padding(bottom = Spacing.m),
+        verticalArrangement = Arrangement.spacedBy(Spacing.m),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
@@ -162,13 +163,13 @@ private fun AddCategorySheetContent(
             EmojiText(text = state.emoji)
         }
 
-        OutlinedTextField(
+        AlternativeBaseTextField(
             modifier = Modifier.fillMaxWidth(),
             value = state.name,
             onValueChange = onNameChange,
             // The name identifies a category, so it is fixed once created.
             enabled = !state.isEditMode,
-            label = { Text(text = stringResource(R.string.category_name)) },
+            label = stringResource(R.string.category_name),
             singleLine = true,
             keyboardOptions = KeyboardOptions(
                 capitalization = KeyboardCapitalization.Sentences,
@@ -179,14 +180,14 @@ private fun AddCategorySheetContent(
 
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
         ) {
             OutlinedButton(
                 modifier = Modifier.weight(1f),
                 onClick = onEmojiClick,
             ) {
                 Text(text = stringResource(R.string.category_icon))
-                Text(modifier = Modifier.padding(start = 8.dp), text = state.emoji)
+                Text(modifier = Modifier.padding(start = Spacing.xs), text = state.emoji)
             }
             OutlinedButton(
                 modifier = Modifier.weight(1f),
@@ -195,7 +196,7 @@ private fun AddCategorySheetContent(
                 Text(text = stringResource(R.string.category_color))
                 Box(
                     modifier = Modifier
-                        .padding(start = 8.dp)
+                        .padding(start = Spacing.xs)
                         .size(32.dp)
                         .clip(CircleShape)
                         .background(color)
@@ -220,7 +221,7 @@ private fun AddCategorySheetContent(
 
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
         ) {
             if (state.isEditMode) {
                 Button(

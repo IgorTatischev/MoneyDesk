@@ -5,8 +5,8 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -14,11 +14,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
+import com.money.ui.theme.Spacing
 
 object ButtonsDefaults {
 
-    val MediumButtonPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
+    val MediumButtonPadding = PaddingValues(horizontal = Spacing.xl, vertical = Spacing.m)
 
     val SmallButtonPadding = PaddingValues(horizontal = 32.dp, vertical = 14.dp)
 
@@ -53,8 +55,9 @@ object ButtonsDefaults {
         val offsetY: Dp = 4.dp
     }
 
-    val DefaultButtonShape = RoundedCornerShape(24.dp)
-    val cornerRadius = 24.dp
+    val DefaultButtonShape: Shape
+        @Composable
+        get() = MaterialTheme.shapes.large
 }
 
 fun Dp.dpToPx(density: Density) = with(density) { this@dpToPx.toPx() }
